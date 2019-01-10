@@ -1,0 +1,13 @@
+{
+    "name": "clement/forteroche",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "OCFram\\": "lib/OCFram",
+            "App\\": "App",
+            "Model\\": "lib/vendor/Model",
+            "Entity\\": "lib/vendor/Entity",
+            "FormBuilder\\": "lib/vendor/FormBuilder"
+        }
+    }
+}
