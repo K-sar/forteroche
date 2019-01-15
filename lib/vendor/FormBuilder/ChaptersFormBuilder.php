@@ -7,7 +7,7 @@ use \OCFram\TextField;
 use \OCFram\MaxLengthValidator;
 use \OCFram\NotNullValidator;
 
-class NewsFormBuilder extends FormBuilder
+class ChaptersFormBuilder extends FormBuilder
 {
   public function build()
   {

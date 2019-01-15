@@ -3,7 +3,7 @@ namespace Entity;
 
 use \OCFram\Entity;
 
-class News extends Entity
+class Chapters extends Entity
 {
   protected $auteur,
             $titre,

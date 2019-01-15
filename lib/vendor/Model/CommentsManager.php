@@ -63,5 +63,5 @@ abstract class CommentsManager extends Manager
    * @param $chapters L'identifiant du chapitre dont les commentaires doivent être supprimés
    * @return void
    */
-  abstract public function deleteFromNews($chapters);   
+  abstract public function deleteFromChapters($chapters);   
 }

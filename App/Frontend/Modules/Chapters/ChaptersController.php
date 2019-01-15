@@ -1,5 +1,5 @@
 <?php
-namespace App\Frontend\Modules\News;
+namespace App\Frontend\Modules\Chapters;
  
 use \OCFram\BackController;
 use \OCFram\HTTPRequest;
@@ -7,22 +7,22 @@ use \Entity\Comment;
 use \FormBuilder\CommentFormBuilder;
 use \OCFram\FormHandler;
  
-class NewsController extends BackController
+class ChaptersController extends BackController
 {
   public function executeIndex(HTTPRequest $request)
   {
-    $nombreNews = $this->app->config()->get('nombre_chapters');
+    $nombreChapters = $this->app->config()->get('nombre_chapters');
     $nombreCaracteres = $this->app->config()->get('nombre_caracteres');
  
     // On ajoute une définition pour le titre.
-    $this->page->addVar('title', 'Liste des '.$nombreNews.' dernières chapters');
+    $this->page->addVar('title', 'Liste des '.$nombreChapters.' dernières chapters');
  
     // On récupère le manager des chapters.
-    $manager = $this->managers->getManagerOf('News');
+    $manager = $this->managers->getManagerOf('Chapters');
  
-    $listeNews = $manager->getList(0, $nombreNews);
+    $listeChapters = $manager->getList(0, $nombreChapters);
  
-    foreach ($listeNews as $chapters)
+    foreach ($listeChapters as $chapters)
     {
       if (strlen($chapters->contenu()) > $nombreCaracteres)
       {
@@ -33,13 +33,13 @@ class NewsController extends BackController
       }
     }
  
-    // On ajoute la variable $listeNews à la vue.
-    $this->page->addVar('listeNews', $listeNews);
+    // On ajoute la variable $listeChapters à la vue.
+    $this->page->addVar('listeChapters', $listeChapters);
   }
  
   public function executeShow(HTTPRequest $request)
   {
-    $chapters = $this->managers->getManagerOf('News')->getUnique($request->getData('id'));
+    $chapters = $this->managers->getManagerOf('Chapters')->getUnique($request->getData('id'));
  
     if (empty($chapters))
     {

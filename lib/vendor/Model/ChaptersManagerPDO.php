@@ -1,11 +1,11 @@
 <?php
 namespace Model;
 
-use \Entity\News;
+use \Entity\Chapters;
 
-class NewsManagerPDO extends NewsManager
+class ChaptersManagerPDO extends ChaptersManager
 {
-  protected function add(News $chapters)
+  protected function add(Chapters $chapters)
   {
     $requete = $this->dao->prepare('INSERT INTO chapters SET auteur = :auteur, titre = :titre, contenu = :contenu, dateAjout = NOW(), dateModif = NOW()');
     
@@ -31,11 +31,11 @@ class NewsManagerPDO extends NewsManager
     }
     
     $requete = $this->dao->query($sql);
-    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\News');
+    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Chapters');
     
-    $listeNews = $requete->fetchAll();
+    $listeChapters = $requete->fetchAll();
     
-    foreach ($listeNews as $chapters)
+    foreach ($listeChapters as $chapters)
     {
       $chapters->setDateAjout(new \DateTime($chapters->dateAjout()));
       $chapters->setDateModif(new \DateTime($chapters->dateModif()));
@@ -43,7 +43,7 @@ class NewsManagerPDO extends NewsManager
     
     $requete->closeCursor();
     
-    return $listeNews;
+    return $listeChapters;
   }
   
   public function getUnique($id)
@@ -52,7 +52,7 @@ class NewsManagerPDO extends NewsManager
     $requete->bindValue(':id', (int) $id, \PDO::PARAM_INT);
     $requete->execute();
     
-    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\News');
+    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Chapters');
     
     if ($chapters = $requete->fetch())
     {
@@ -64,7 +64,7 @@ class NewsManagerPDO extends NewsManager
     return null;
   }
     
-  protected function modify(News $chapters)
+  protected function modify(Chapters $chapters)
   {
     $requete = $this->dao->prepare('UPDATE chapters SET auteur = :auteur, titre = :titre, contenu = :contenu, dateModif = NOW() WHERE id = :id');
     

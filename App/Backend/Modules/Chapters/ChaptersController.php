@@ -1,22 +1,22 @@
 <?php
-namespace App\Backend\Modules\News;
+namespace App\Backend\Modules\Chapters;
  
 use \OCFram\BackController;
 use \OCFram\HTTPRequest;
-use \Entity\News;
+use \Entity\Chapters;
 use \Entity\Comment;
 use \FormBuilder\CommentFormBuilder;
-use \FormBuilder\NewsFormBuilder;
+use \FormBuilder\ChaptersFormBuilder;
 use \OCFram\FormHandler;
  
-class NewsController extends BackController
+class ChaptersController extends BackController
 {
   public function executeDelete(HTTPRequest $request)
   {
     $chaptersId = $request->getData('id');
  
-    $this->managers->getManagerOf('News')->delete($chaptersId);
-    $this->managers->getManagerOf('Comments')->deleteFromNews($chaptersId);
+    $this->managers->getManagerOf('Chapters')->delete($chaptersId);
+    $this->managers->getManagerOf('Comments')->deleteFromChapters($chaptersId);
  
     $this->app->user()->setFlash('La chapters a bien été supprimée !');
  
@@ -36,10 +36,10 @@ class NewsController extends BackController
   {
     $this->page->addVar('title', 'Gestion des chapters');
  
-    $manager = $this->managers->getManagerOf('News');
+    $manager = $this->managers->getManagerOf('Chapters');
  
-    $this->page->addVar('listeNews', $manager->getList());
-    $this->page->addVar('nombreNews', $manager->count());
+    $this->page->addVar('listeChapters', $manager->getList());
+    $this->page->addVar('nombreChapters', $manager->count());
   }
  
   public function executeInsert(HTTPRequest $request)
@@ -94,7 +94,7 @@ class NewsController extends BackController
   {
     if ($request->method() == 'POST')
     {
-      $chapters = new News([
+      $chapters = new Chapters([
         'auteur' => $request->postData('auteur'),
         'titre' => $request->postData('titre'),
         'contenu' => $request->postData('contenu')
@@ -110,20 +110,20 @@ class NewsController extends BackController
       // L'identifiant du chapitre est transmis si on veut la modifier
       if ($request->getExists('id'))
       {
-        $chapters = $this->managers->getManagerOf('News')->getUnique($request->getData('id'));
+        $chapters = $this->managers->getManagerOf('Chapters')->getUnique($request->getData('id'));
       }
       else
       {
-        $chapters = new News;
+        $chapters = new Chapters;
       }
     }
  
-    $formBuilder = new NewsFormBuilder($chapters);
+    $formBuilder = new ChaptersFormBuilder($chapters);
     $formBuilder->build();
  
     $form = $formBuilder->form();
  
-    $formHandler = new FormHandler($form, $this->managers->getManagerOf('News'), $request);
+    $formHandler = new FormHandler($form, $this->managers->getManagerOf('Chapters'), $request);
  
     if ($formHandler->process())
     {

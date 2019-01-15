@@ -2,25 +2,25 @@
 namespace Model;
 
 use \OCFram\Manager;
-use \Entity\News;
+use \Entity\Chapters;
 
-abstract class NewsManager extends Manager
+abstract class ChaptersManager extends Manager
 {
   /**
    * Méthode permettant d'ajouter un chapitre.
-   * @param $chapters News Le chapitre à ajouter
+   * @param $chapters Chapters Le chapitre à ajouter
    * @return void
    */
-  abstract protected function add(News $chapters);
+  abstract protected function add(Chapters $chapters);
   
   /**
    * Méthode permettant d'enregistrer un chapitre.
-   * @param $chapters News le chapitre à enregistrer
+   * @param $chapters Chapters le chapitre à enregistrer
    * @see self::add()
    * @see self::modify()
    * @return void
    */
-  public function save(News $chapters)
+  public function save(Chapters $chapters)
   {
     if ($chapters->isValid())
     {
@@ -42,14 +42,14 @@ abstract class NewsManager extends Manager
    * Méthode retournant une liste de chapitres demandée.
    * @param $debut int Le premier chapitre à sélectionner
    * @param $limite int Le nombre de chapitres à sélectionner
-   * @return array La liste des chapitres. Chaque entrée est une instance de News.
+   * @return array La liste des chapitres. Chaque entrée est une instance de Chapters.
    */
   abstract public function getList($debut = -1, $limite = -1);
   
   /**
    * Méthode retournant un chapitre précise.
    * @param $id int L'identifiant du chapitre à récupérer
-   * @return News Le chapitre demandée
+   * @return Chapters Le chapitre demandée
    */
   abstract public function getUnique($id);
   
@@ -58,7 +58,7 @@ abstract class NewsManager extends Manager
    * @param $chapters chapters le chapitre à modifier
    * @return void
    */
-  abstract protected function modify(News $chapters);
+  abstract protected function modify(Chapters $chapters);
   
   /**
    * Méthode permettant de supprimer un chapitre.

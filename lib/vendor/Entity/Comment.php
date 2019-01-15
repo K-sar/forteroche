@@ -18,7 +18,7 @@ class Comment extends Entity
     return !(empty($this->auteur) || empty($this->contenu));
   }
 
-  public function setNews($chapters)
+  public function setChapters($chapters)
   {
     $this->chapters = (int) $chapters;
   }
