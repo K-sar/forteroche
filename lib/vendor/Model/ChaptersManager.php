@@ -28,7 +28,7 @@ abstract class ChaptersManager extends Manager
     }
     else
     {
-      throw new \RuntimeException('Le chapitre doit être validée pour être enregistrée');
+      throw new \RuntimeException('Le chapitre doit être validé pour être enregistré');
     }
   }
   
