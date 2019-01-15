@@ -1,12 +1,12 @@
-<p>Par <em><?= $news['auteur'] ?></em>, le <?= $news['dateAjout']->format('d/m/Y à H\hi') ?></p>
-<h2><?= $news['titre'] ?></h2>
-<p><?= nl2br($news['contenu']) ?></p>
+<p>Par <em><?= $chapters['auteur'] ?></em>, le <?= $chapters['dateAjout']->format('d/m/Y à H\hi') ?></p>
+<h2><?= $chapters['titre'] ?></h2>
+<p><?= nl2br($chapters['contenu']) ?></p>
 
-<?php if ($news['dateAjout'] != $news['dateModif']) { ?>
-  <p style="text-align: right;"><small><em>Modifiée le <?= $news['dateModif']->format('d/m/Y à H\hi') ?></em></small></p>
+<?php if ($chapters['dateAjout'] != $chapters['dateModif']) { ?>
+  <p style="text-align: right;"><small><em>Modifiée le <?= $chapters['dateModif']->format('d/m/Y à H\hi') ?></em></small></p>
 <?php } ?>
 
-<p><a href="commenter-<?= $news['id'] ?>.html">Ajouter un commentaire</a></p>
+<p><a href="commenter-<?= $chapters['id'] ?>.html">Ajouter un commentaire</a></p>
 
 <?php
 if (empty($comments))
@@ -33,4 +33,4 @@ foreach ($comments as $comment)
 }
 ?>
 
-<p><a href="commenter-<?= $news['id'] ?>.html">Ajouter un commentaire</a></p>
+<p><a href="commenter-<?= $chapters['id'] ?>.html">Ajouter un commentaire</a></p>

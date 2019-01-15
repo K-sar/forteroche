@@ -7,9 +7,9 @@ class CommentsManagerPDO extends CommentsManager
 {
   protected function add(Comment $comment)
   {
-    $q = $this->dao->prepare('INSERT INTO comments SET news = :news, auteur = :auteur, contenu = :contenu, date = NOW()');
+    $q = $this->dao->prepare('INSERT INTO comments SET chapters = :chapters, auteur = :auteur, contenu = :contenu, date = NOW()');
     
-    $q->bindValue(':news', $comment->news(), \PDO::PARAM_INT);
+    $q->bindValue(':chapters', $comment->chapters(), \PDO::PARAM_INT);
     $q->bindValue(':auteur', $comment->auteur());
     $q->bindValue(':contenu', $comment->contenu());
     
@@ -18,15 +18,15 @@ class CommentsManagerPDO extends CommentsManager
     $comment->setId($this->dao->lastInsertId());
   }
     
-  public function getListOf($news)
+  public function getListOf($chapters)
   {
-    if (!ctype_digit($news))
+    if (!ctype_digit($chapters))
     {
       throw new \InvalidArgumentException('L\'identifiant du chapitre passé doit être un nombre entier valide');
     }
     
-    $q = $this->dao->prepare('SELECT id, news, auteur, contenu, date FROM comments WHERE news = :news');
-    $q->bindValue(':news', $news, \PDO::PARAM_INT);
+    $q = $this->dao->prepare('SELECT id, chapters, auteur, contenu, date FROM comments WHERE chapters = :chapters');
+    $q->bindValue(':chapters', $chapters, \PDO::PARAM_INT);
     $q->execute();
     
     $q->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Comment');
@@ -57,7 +57,7 @@ class CommentsManagerPDO extends CommentsManager
         throw new \InvalidArgumentException('L\'identifiant du commentaire passé doit être un nombre entier valide');
       }
       
-      $q = $this->dao->prepare('SELECT id, news, auteur, contenu, date FROM comments WHERE id = :id');
+      $q = $this->dao->prepare('SELECT id, chapters, auteur, contenu, date FROM comments WHERE id = :id');
       $q->bindValue(':id', $id, \PDO::PARAM_INT);
       $q->execute();
       
@@ -74,8 +74,8 @@ class CommentsManagerPDO extends CommentsManager
       $this->dao->exec('DELETE FROM comments WHERE id = '.(int) $id);
     }
   
-  public function deleteFromNews($news)
+  public function deleteFromNews($chapters)
   {
-    $this->dao->exec('DELETE FROM comments WHERE news = '.(int) $news);
+    $this->dao->exec('DELETE FROM comments WHERE chapters = '.(int) $chapters);
   }
 }

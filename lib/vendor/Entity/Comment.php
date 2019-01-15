@@ -5,7 +5,7 @@ use \OCFram\Entity;
 
 class Comment extends Entity
 {
-  protected $news,
+  protected $chapters,
             $auteur,
             $contenu,
             $date;
@@ -18,9 +18,9 @@ class Comment extends Entity
     return !(empty($this->auteur) || empty($this->contenu));
   }
 
-  public function setNews($news)
+  public function setNews($chapters)
   {
-    $this->news = (int) $news;
+    $this->chapters = (int) $chapters;
   }
 
   public function setAuteur($auteur)
@@ -48,9 +48,9 @@ class Comment extends Entity
     $this->date = $date;
   }
 
-  public function news()
+  public function chapters()
   {
-    return $this->news;
+    return $this->chapters;
   }
 
   public function auteur()

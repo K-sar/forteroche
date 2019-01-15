@@ -1,8 +1,8 @@
 <?php
-foreach ($listeNews as $news)
+foreach ($listeNews as $chapters)
 {
 ?>
-  <h2><a href="news-<?= $news['id'] ?>.html"><?= $news['titre'] ?></a></h2>
-  <p><?= nl2br($news['contenu']) ?></p>
+  <h2><a href="chapters-<?= $chapters['id'] ?>.html"><?= $chapters['titre'] ?></a></h2>
+  <p><?= nl2br($chapters['contenu']) ?></p>
 <?php
 }

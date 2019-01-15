@@ -7,24 +7,24 @@ use \Entity\News;
 abstract class NewsManager extends Manager
 {
   /**
-   * Méthode permettant d'ajouter une news.
-   * @param $news News La news à ajouter
+   * Méthode permettant d'ajouter un chapitre.
+   * @param $chapters News Le chapitre à ajouter
    * @return void
    */
-  abstract protected function add(News $news);
+  abstract protected function add(News $chapters);
   
   /**
-   * Méthode permettant d'enregistrer une news.
-   * @param $news News la news à enregistrer
+   * Méthode permettant d'enregistrer un chapitre.
+   * @param $chapters News le chapitre à enregistrer
    * @see self::add()
    * @see self::modify()
    * @return void
    */
-  public function save(News $news)
+  public function save(News $chapters)
   {
-    if ($news->isValid())
+    if ($chapters->isValid())
     {
-      $news->isNew() ? $this->add($news) : $this->modify($news);
+      $chapters->isNew() ? $this->add($chapters) : $this->modify($chapters);
     }
     else
     {
@@ -33,35 +33,35 @@ abstract class NewsManager extends Manager
   }
   
   /**
-   * Méthode renvoyant le nombre de news total.
+   * Méthode renvoyant le nombre de chapitres total.
    * @return int
    */
   abstract public function count();
     
   /**
-   * Méthode retournant une liste de news demandée.
-   * @param $debut int La première news à sélectionner
-   * @param $limite int Le nombre de news à sélectionner
-   * @return array La liste des news. Chaque entrée est une instance de News.
+   * Méthode retournant une liste de chapitres demandée.
+   * @param $debut int Le premier chapitre à sélectionner
+   * @param $limite int Le nombre de chapitres à sélectionner
+   * @return array La liste des chapitres. Chaque entrée est une instance de News.
    */
   abstract public function getList($debut = -1, $limite = -1);
   
   /**
-   * Méthode retournant une news précise.
+   * Méthode retournant un chapitre précise.
    * @param $id int L'identifiant du chapitre à récupérer
-   * @return News La news demandée
+   * @return News Le chapitre demandée
    */
   abstract public function getUnique($id);
   
   /**
-   * Méthode permettant de modifier une news.
-   * @param $news news la news à modifier
+   * Méthode permettant de modifier un chapitre.
+   * @param $chapters chapters le chapitre à modifier
    * @return void
    */
-  abstract protected function modify(News $news);
+  abstract protected function modify(News $chapters);
   
   /**
-   * Méthode permettant de supprimer une news.
+   * Méthode permettant de supprimer un chapitre.
    * @param $id int L'identifiant du chapitre à supprimer
    * @return void
    */
