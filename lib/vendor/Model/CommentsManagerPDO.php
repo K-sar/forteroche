@@ -22,7 +22,7 @@ class CommentsManagerPDO extends CommentsManager
   {
     if (!ctype_digit($news))
     {
-      throw new \InvalidArgumentException('L\'identifiant de la news passé doit être un nombre entier valide');
+      throw new \InvalidArgumentException('L\'identifiant du chapitre passé doit être un nombre entier valide');
     }
     
     $q = $this->dao->prepare('SELECT id, news, auteur, contenu, date FROM comments WHERE news = :news');

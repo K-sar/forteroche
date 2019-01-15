@@ -17,7 +17,7 @@ class NewsFormBuilder extends FormBuilder
         'maxLength' => 50,
         'validators' => [
           new MaxLengthValidator('L\'auteur spécifié est trop long (50 caractères maximum)', 50),
-          new NotNullValidator('Merci de spécifier l\'auteur de la news'),
+          new NotNullValidator('Merci de spécifier l\'auteur du chapitre'),
         ],
        ]))
        ->add(new StringField([
@@ -26,7 +26,7 @@ class NewsFormBuilder extends FormBuilder
         'maxLength' => 100,
         'validators' => [
           new MaxLengthValidator('Le titre spécifié est trop long (100 caractères maximum)', 100),
-          new NotNullValidator('Merci de spécifier le titre de la news'),
+          new NotNullValidator('Merci de spécifier le titre du chapitre'),
         ],
        ]))
        ->add(new TextField([
@@ -35,7 +35,7 @@ class NewsFormBuilder extends FormBuilder
         'rows' => 8,
         'cols' => 60,
         'validators' => [
-          new NotNullValidator('Merci de spécifier le contenu de la news'),
+          new NotNullValidator('Merci de spécifier le contenu du chapitre'),
         ],
        ]));
   }

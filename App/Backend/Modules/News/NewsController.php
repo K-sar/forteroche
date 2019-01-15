@@ -107,7 +107,7 @@ class NewsController extends BackController
     }
     else
     {
-      // L'identifiant de la news est transmis si on veut la modifier
+      // L'identifiant du chapitre est transmis si on veut la modifier
       if ($request->getExists('id'))
       {
         $news = $this->managers->getManagerOf('News')->getUnique($request->getData('id'));

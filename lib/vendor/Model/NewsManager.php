@@ -28,7 +28,7 @@ abstract class NewsManager extends Manager
     }
     else
     {
-      throw new \RuntimeException('La news doit être validée pour être enregistrée');
+      throw new \RuntimeException('Le chapitre doit être validée pour être enregistrée');
     }
   }
   
@@ -48,7 +48,7 @@ abstract class NewsManager extends Manager
   
   /**
    * Méthode retournant une news précise.
-   * @param $id int L'identifiant de la news à récupérer
+   * @param $id int L'identifiant du chapitre à récupérer
    * @return News La news demandée
    */
   abstract public function getUnique($id);
@@ -62,7 +62,7 @@ abstract class NewsManager extends Manager
   
   /**
    * Méthode permettant de supprimer une news.
-   * @param $id int L'identifiant de la news à supprimer
+   * @param $id int L'identifiant du chapitre à supprimer
    * @return void
    */
   abstract public function delete($id);
