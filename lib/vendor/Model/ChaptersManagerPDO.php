@@ -45,6 +45,31 @@ class ChaptersManagerPDO extends ChaptersManager
     
     return $listeChapters;
   }
+
+  public function getSummaryList($debut = -1, $limite = -1)
+  {
+    $sql = 'SELECT id, titre, dateAjout, dateModif FROM chapters ORDER BY id ASC';
+    
+    if ($debut != -1 || $limite != -1)
+    {
+      $sql .= ' LIMIT '.(int) $limite.' OFFSET '.(int) $debut;
+    }
+    
+    $requete = $this->dao->query($sql);
+    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Chapters');
+    
+    $listeChapters = $requete->fetchAll();
+    
+    foreach ($listeChapters as $chapters)
+    {
+      $chapters->setDateAjout(new \DateTime($chapters->dateAjout()));
+      $chapters->setDateModif(new \DateTime($chapters->dateModif()));
+    }
+    
+    $requete->closeCursor();
+    
+    return $listeChapters;
+  }
   
   public function getUnique($id)
   {
