@@ -50,6 +50,23 @@ class ChaptersController extends BackController
     $this->page->addVar('chapters', $chapters);
     $this->page->addVar('comments', $this->managers->getManagerOf('Comments')->getListOf($chapters->id()));
   }
+
+  public function executeSummary(HTTPRequest $request)
+  {
+    $nombreChapters = $this->app->config()->get('nombre_chapters');
+    $nombreCaracteres = $this->app->config()->get('nombre_caracteres');
+ 
+    // On ajoute une définition pour le titre.
+    $this->page->addVar('title', 'Sommaire des '.$nombreChapters.' chapitres');
+ 
+    // On récupère le manager des chaptires.
+    $manager = $this->managers->getManagerOf('Chapters');
+ 
+    $listeChapters = $manager->getSummaryList(0, $nombreChapters);
+ 
+    // On ajoute la variable $listeChapters à la vue.
+    $this->page->addVar('listeChapters', $listeChapters);
+  }
  
   public function executeInsertComment(HTTPRequest $request)
   {
