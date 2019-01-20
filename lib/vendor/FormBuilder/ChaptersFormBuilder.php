@@ -17,7 +17,6 @@ class ChaptersFormBuilder extends FormBuilder
         'maxLength' => 10,
         'validators' => [
           new MaxLengthValidator('Le numéro du chapitre spécifié est trop long (10 caractères maximum)', 10),
-          new NotNullValidator('Merci de spécifier le numéro du chapitre'),
         ],
        ]))
        ->add(new StringField([
@@ -26,7 +25,6 @@ class ChaptersFormBuilder extends FormBuilder
         'maxLength' => 100,
         'validators' => [
           new MaxLengthValidator('Le titre spécifié est trop long (100 caractères maximum)', 100),
-          new NotNullValidator('Merci de spécifier le titre du chapitre'),
         ],
        ]))
        ->add(new TextField([

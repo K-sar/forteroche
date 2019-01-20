@@ -26,21 +26,11 @@ class Chapters extends Entity
 
   public function setChapitre($chapitre)
   {
-    if (!is_string($chapitre) || empty($chapitre))
-    {
-      $this->erreurs[] = self::CHAPITRE_INVALIDE;
-    }
-
     $this->chapitre = $chapitre;
   }
 
   public function setTitre($titre)
   {
-    if (!is_string($titre) || empty($titre))
-    {
-      $this->erreurs[] = self::TITRE_INVALIDE;
-    }
-
     $this->titre = $titre;
   }
 
