@@ -5,9 +5,10 @@ use \OCFram\Entity;
 
 class Chapters extends Entity
 {
-  protected $auteur,
+  protected $chapitre,
             $titre,
             $contenu,
+            $auteur,
             $dateAjout,
             $dateModif;
 
@@ -17,20 +18,20 @@ class Chapters extends Entity
 
   public function isValid()
   {
-    return !(empty($this->auteur) || empty($this->titre) || empty($this->contenu));
+    return !(empty($this->contenu) || empty($this->auteur));
   }
 
 
   // SETTERS //
 
-  public function setAuteur($auteur)
+  public function setChapitre($chapitre)
   {
-    if (!is_string($auteur) || empty($auteur))
+    if (!is_string($chapitre) || empty($chapitre))
     {
-      $this->erreurs[] = self::AUTEUR_INVALIDE;
+      $this->erreurs[] = self::CHAPITRE_INVALIDE;
     }
 
-    $this->auteur = $auteur;
+    $this->chapitre = $chapitre;
   }
 
   public function setTitre($titre)
@@ -52,6 +53,16 @@ class Chapters extends Entity
 
     $this->contenu = $contenu;
   }
+  
+  public function setAuteur($auteur)
+  {
+    if (!is_string($auteur) || empty($auteur))
+    {
+      $this->erreurs[] = self::AUTEUR_INVALIDE;
+    }
+
+    $this->auteur = $auteur;
+  }
 
   public function setDateAjout(\DateTime $dateAjout)
   {
@@ -65,9 +76,9 @@ class Chapters extends Entity
 
   // GETTERS //
 
-  public function auteur()
+  public function chapitre()
   {
-    return $this->auteur;
+    return $this->chapitre;
   }
 
   public function titre()
@@ -78,6 +89,11 @@ class Chapters extends Entity
   public function contenu()
   {
     return $this->contenu;
+  }
+    
+  public function auteur()
+  {
+    return $this->auteur;
   }
 
   public function dateAjout()

@@ -18,7 +18,7 @@ class ChaptersController extends BackController
     $this->managers->getManagerOf('Chapters')->delete($chaptersId);
     $this->managers->getManagerOf('Comments')->deleteFromChapters($chaptersId);
  
-    $this->app->user()->setFlash('La chapters a bien été supprimée !');
+    $this->app->user()->setFlash('Le chapitre a bien été supprimé !');
  
     $this->app->httpResponse()->redirect('/admin');
   }
@@ -34,7 +34,7 @@ class ChaptersController extends BackController
  
   public function executeIndex(HTTPRequest $request)
   {
-    $this->page->addVar('title', 'Gestion des chapters');
+    $this->page->addVar('title', 'Gestion des chapitres');
  
     $manager = $this->managers->getManagerOf('Chapters');
  
@@ -46,14 +46,14 @@ class ChaptersController extends BackController
   {
     $this->processForm($request);
  
-    $this->page->addVar('title', 'Ajout d\'une chapters');
+    $this->page->addVar('title', 'Ajout d\'un chapitre');
   }
  
   public function executeUpdate(HTTPRequest $request)
   {
     $this->processForm($request);
  
-    $this->page->addVar('title', 'Modification d\'une chapters');
+    $this->page->addVar('title', 'Modification d\'un chapitre');
   }
  
   public function executeUpdateComment(HTTPRequest $request)
@@ -95,9 +95,10 @@ class ChaptersController extends BackController
     if ($request->method() == 'POST')
     {
       $chapters = new Chapters([
-        'auteur' => $request->postData('auteur'),
+        'chapitre' => $request->postData('chapitre'),
         'titre' => $request->postData('titre'),
-        'contenu' => $request->postData('contenu')
+        'contenu' => $request->postData('contenu'),
+        'auteur' => $request->postData('auteur')
       ]);
  
       if ($request->getExists('id'))
@@ -127,7 +128,7 @@ class ChaptersController extends BackController
  
     if ($formHandler->process())
     {
-      $this->app->user()->setFlash($chapters->isNew() ? 'La chapters a bien été ajoutée !' : 'La chapters a bien été modifiée !');
+      $this->app->user()->setFlash($chapters->isNew() ? 'Le chapitre a bien été ajouté !' : 'Le chapitre a bien été modifié !');
  
       $this->app->httpResponse()->redirect('/admin');
     }

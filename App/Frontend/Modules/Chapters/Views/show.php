@@ -1,7 +1,6 @@
-<p>Par <em><?= $chapters['auteur'] ?></em>, le <?= $chapters['dateAjout']->format('d/m/Y à H\hi') ?></p>
 <h2><?= $chapters['titre'] ?></h2>
 <p><?= nl2br($chapters['contenu']) ?></p>
-
+<p>Par <em><?= $chapters['auteur'] ?></em>, le <?= $chapters['dateAjout']->format('d/m/Y à H\hi') ?></p>
 <?php if ($chapters['dateAjout'] != $chapters['dateModif']) { ?>
   <p style="text-align: right;"><small><em>Modifiée le <?= $chapters['dateModif']->format('d/m/Y à H\hi') ?></em></small></p>
 <?php } ?>
