@@ -24,7 +24,7 @@ class ChaptersManagerPDO extends ChaptersManager
     
   public function getList($debut = -1, $limite = -1)
   {
-    $sql = 'SELECT id, chapitre, titre, contenu, auteur, dateAjout, dateModif FROM chapters ORDER BY chapitre ASC';
+    $sql = 'SELECT id, chapitre, titre, contenu, auteur, dateAjout, dateModif FROM chapters ORDER BY id DESC';
     
     if ($debut != -1 || $limite != -1)
     {

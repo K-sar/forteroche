@@ -2,7 +2,7 @@
 foreach ($listeChapters as $chapters)
 {
 ?>
-  <h2><a href="chapters-<?= $chapters['id'] ?>.html"><?= $chapters['titre'] ?></a></h2>
+  <h2><a href="chapters-<?= $chapters['id'] ?>.html">Chapitre <?= $chapters['chapitre'] ?> : <?= $chapters['titre'] ?></a></h2>
   <p><?= nl2br($chapters['contenu']) ?></p>
   <?php if ($user->isAuthenticated()) { ?> -
     <a href="admin/chapters-update-<?= $chapters['id'] ?>.html">Modifier</a> |

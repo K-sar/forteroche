@@ -83,7 +83,6 @@ class ChaptersController extends BackController
     if ($formHandler->process())
     {
       $this->app->user()->setFlash('Le commentaire a bien été modifié');
- var_dump($comment);die;
       $this->app->httpResponse()->redirect('/admin');
     }
  
