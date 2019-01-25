@@ -50,17 +50,6 @@ class ChaptersController extends BackController
     $this->page->addVar('chapters', $chapters);
     $this->page->addVar('comments', $this->managers->getManagerOf('Comments')->getListOf($chapters->id()));
   }
-
-  public function executeSummary(HTTPRequest $request)
-  { 
-    $this->page->addVar('title', 'Sommaire');
- 
-    $manager = $this->managers->getManagerOf('Chapters');
- 
-    $listeChapters = $manager->getSummaryList();
- 
-    $this->page->addVar('listeChapters', $listeChapters);
-  }
  
   public function executeInsertComment(HTTPRequest $request)
   {
@@ -70,7 +59,8 @@ class ChaptersController extends BackController
       $comment = new Comment([
         'chapters' => $request->getData('chapters'),
         'auteur' => $request->postData('auteur'),
-        'contenu' => $request->postData('contenu')
+        'contenu' => $request->postData('contenu'),
+        'signalement' => $request->postData('signalement'),
       ]);
     }
     else
@@ -95,5 +85,26 @@ class ChaptersController extends BackController
     $this->page->addVar('comment', $comment);
     $this->page->addVar('form', $form->createView());
     $this->page->addVar('title', 'Ajout d\'un commentaire');
+  }
+
+  public function executeReportComment(HTTPRequest $request)
+  {
+    $comment = $this->managers->getManagerOf('Comments')->get($request->getData('id'));
+    $comment->setSignalement($comment->signalement()+1);
+    $this->managers->getManagerOf('Comments')->modify($comment);
+
+    $this->app->user()->setFlash('Le commentaire a bien été signalé, merci !');
+    $this->app->httpResponse()->redirect('chapters-'.$comment->chapters().'.html');
+  }
+
+  public function executeSummary(HTTPRequest $request)
+  { 
+    $this->page->addVar('title', 'Sommaire');
+ 
+    $manager = $this->managers->getManagerOf('Chapters');
+ 
+    $listeChapters = $manager->getSummaryList();
+ 
+    $this->page->addVar('listeChapters', $listeChapters);
   }
 }

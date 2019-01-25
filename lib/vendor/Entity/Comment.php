@@ -8,7 +8,8 @@ class Comment extends Entity
   protected $chapters,
             $auteur,
             $contenu,
-            $date;
+            $date,
+            $signalement;
 
   const AUTEUR_INVALIDE = 1;
   const CONTENU_INVALIDE = 2;
@@ -48,6 +49,11 @@ class Comment extends Entity
     $this->date = $date;
   }
 
+  public function setSignalement($signalement)
+  {
+    $this->signalement = $signalement;
+  }
+
   public function chapters()
   {
     return $this->chapters;
@@ -66,5 +72,10 @@ class Comment extends Entity
   public function date()
   {
     return $this->date;
+  }
+
+  public function signalement()
+  {
+    return $this->signalement;
   }
 }

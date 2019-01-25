@@ -134,4 +134,11 @@ class ChaptersController extends BackController
  
     $this->page->addVar('form', $form->createView());
   }
+
+  public function executeReport()
+  {
+    $comments = $this->managers->getManagerOf('Comments')->getListOfReport();
+  
+    $this->page->addVar('comments', $comments);
+  }
 }
