@@ -6,40 +6,53 @@
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8" />
-    
-    <link rel="stylesheet" href="/css/Envision.css" type="text/css" />
+    <link href="https://bootswatch.com/4/sandstone/bootstrap.min.css" rel="stylesheet">
   </head>
   
   <body>
-    <div id="wrap">
+    <div>
       <header>
-        <h1><a href="/">Billet simple pour l'Alaska</a></h1>
-        <p>Jean Forteroche</p>
+        <h1>
+          <a href="/" style="color:black" >Billet simple pour l'Alaska</a> <small class="text-muted"><a href="/contacts.html" style="color:grey">par Jean Forteroche</a></small>
+        </h1>
       </header>
-      
-      <nav>
-        <ul>
-          <li><a href="/">Accueil</a></li>
-          <li><a href="/summary.html">Sommaire</a></li>
-          <?php if ($user->isAuthenticated()) { ?>
-          <li><a href="/admin">Admin</a></li>
-          <li><a href="/admin/chapters-insert.html">Ajouter un chapitre</a></li>
-          <li><a href="/logout">Déconnexion</a></li>
-          <?php } ?>
-          <?php if (!$user->isAuthenticated()) { ?>
-          <li><a href="/contacts.html">Contact</a></li>
-          <?php } ?>
-        </ul>
-      </nav>
-      
-      <div id="content-wrap">
-        <section id="main">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">Accueil</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/summary.html">Sommaire</a>
+            </li>
+            <?php if ($user->isAuthenticated()) { ?>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin">Admin</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/chapters-insert.html">Ajouter un chapitre</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Déconnexion</a>
+            </li>
+            <?php } ?>
+            <?php if (!$user->isAuthenticated()) { ?>
+            <li class="nav-item">
+              <a class="nav-link" href="/contacts.html">Contact</a>
+            </li>
+            <?php } ?>
+          </ul>
+        </div>
+      </nav>      
+      <div>
+        <section>
           <?php if ($user->hasFlash()) echo '<p style="text-align: center;">', $user->getFlash(), '</p>'; ?>
           
           <?= $content ?>
         </section>
       </div>
-    
       <footer></footer>
     </div>
   </body>
