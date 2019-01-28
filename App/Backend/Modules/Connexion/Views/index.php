@@ -7,5 +7,5 @@
   <label>Mot de passe</label>
   <input type="password" name="password" /><br /><br />
   
-  <input type="submit" value="Connexion" />
+  <input type="submit" value="Connexion" autofocus/>
 </form>
