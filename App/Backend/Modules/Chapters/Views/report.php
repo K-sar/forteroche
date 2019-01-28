@@ -19,7 +19,13 @@
             <td>', $comment['contenu'], '</td>
             <td>', $comment['chapters'], '</td>
             <td>', $comment['signalement'], '</td>
-            <td><div class="btn-group" role="group" aria-label="Basic example"><a href="comment-update-', $comment['id'], '.html" class="btn btn-secondary">Modifier</a><a href="comment-delete-', $comment['id'], '.html" class="btn btn-secondary">Supprimer</a></div>
+            <td>
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <a href="../chapters-', $comment['chapters'], '.html" class="btn btn-secondary">Voir</a>
+                <a href="comment-update-', $comment['id'], '.html" class="btn btn-secondary">Modifier</a>
+                <a href="comment-delete-', $comment['id'], '.html" class="btn btn-secondary">Supprimer</a>
+              </div>
+            </td>
           </tr>';
   }
   ?>

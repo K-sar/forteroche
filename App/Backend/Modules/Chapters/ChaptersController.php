@@ -140,5 +140,6 @@ class ChaptersController extends BackController
     $comments = $this->managers->getManagerOf('Comments')->getListOfReport();
   
     $this->page->addVar('comments', $comments);
+    $this->page->addVar('title', 'Modération des commentaires');
   }
 }
