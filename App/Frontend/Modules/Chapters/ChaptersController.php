@@ -20,7 +20,7 @@ class ChaptersController extends BackController
     // On récupère le manager des chaptires.
     $manager = $this->managers->getManagerOf('Chapters');
  
-    $listeChapters = $manager->getList(0, $nombreChapters);
+    $listeChapters = $manager->getPublicList(0, $nombreChapters);
  
     foreach ($listeChapters as $chapters)
     {

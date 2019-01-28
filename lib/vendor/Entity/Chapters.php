@@ -9,12 +9,13 @@ class Chapters extends Entity
             $titre,
             $contenu,
             $auteur,
+            $publication,
             $dateAjout,
             $dateModif;
 
+
   const AUTEUR_INVALIDE = 1;
-  const TITRE_INVALIDE = 2;
-  const CONTENU_INVALIDE = 3;
+  const CONTENU_INVALIDE = 2;
 
   public function isValid()
   {
@@ -64,6 +65,11 @@ class Chapters extends Entity
     $this->dateModif = $dateModif;
   }
 
+  public function setPublication($publication)
+  {
+    $this->publication = $publication;
+  }
+
   // GETTERS //
 
   public function chapitre()
@@ -94,5 +100,10 @@ class Chapters extends Entity
   public function dateModif()
   {
     return $this->dateModif;
+  }
+
+  public function publication()
+  {
+    return $this->publication;
   }
 }

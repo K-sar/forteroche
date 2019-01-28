@@ -14,11 +14,14 @@ class ChaptersController extends BackController
   public function executeIndex(HTTPRequest $request)
   {
     $this->page->addVar('title', 'Gestion des chapitres');
- 
-    $manager = $this->managers->getManagerOf('Chapters');
- 
-    $this->page->addVar('listeChapters', $manager->getList());
-    $this->page->addVar('nombreChapters', $manager->count());
+
+    $chaptersPublic = $this->managers->getManagerOf('Chapters')->getPublicList();
+    $chaptersPrivate = $this->managers->getManagerOf('Chapters')->getPrivateList();
+  
+    $this->page->addVar('listChaptersPublic', $chaptersPublic);
+    $this->page->addVar('listChaptersPrivate', $chaptersPrivate);
+    $this->page->addVar('numberChaptersPublic', count($chaptersPublic));
+    $this->page->addVar('numberChaptersPrivate', count($chaptersPrivate));
   }
  
   public function executeInsert(HTTPRequest $request)
@@ -44,6 +47,24 @@ class ChaptersController extends BackController
  
     $this->app->user()->setFlash('Le chapitre a bien été supprimé !');
  
+    $this->app->httpResponse()->redirect('/admin');
+  }
+
+  public function executePublicChapter(HTTPRequest $request)
+  {    
+    $chapter = $this->managers->getManagerOf('Chapters')->getUnique($request->getData('id'));
+    $chapter->setPublication(true);
+    $this->managers->getManagerOf('Chapters')->modify($chapter);
+
+    $this->app->httpResponse()->redirect('/admin');
+  }
+
+  public function executePrivateChapter(HTTPRequest $request)
+  {    
+    $chapter = $this->managers->getManagerOf('Chapters')->getUnique($request->getData('id'));
+    $chapter->setPublication(0);
+    $this->managers->getManagerOf('Chapters')->modify($chapter);
+
     $this->app->httpResponse()->redirect('/admin');
   }
  

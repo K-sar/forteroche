@@ -1,4 +1,4 @@
-<p style="text-align: center">Il y a actuellement <?= $numberReported ?> commentaires signalés. En voici la liste :</p>
+<p style="text-align: center">Il y a actuellement <?= $numberReported ?> commentaires signalés :</p>
 
 <table class="table table-hover">
   <thead>
@@ -14,7 +14,7 @@
   <?php
   foreach ($commentsReported as $commentR)
   {
-    echo '<tr>
+    echo '<tr class="table-warning">
             <td>', $commentR['auteur'], '</td>
             <td>', $commentR['contenu'], '</td>
             <td>', $commentR['chapters'], '</td>
@@ -32,7 +32,7 @@
   ?>
   </tbody>
 </table>
-<p style="text-align: center">Il y a actuellement <?= $numberIgnored ?> commentaires ignorés. En voici la liste :</p>
+<p style="text-align: center">Il y a actuellement <?= $numberIgnored ?> commentaires ignorés :</p>
 
 <table class="table table-hover">
   <thead>

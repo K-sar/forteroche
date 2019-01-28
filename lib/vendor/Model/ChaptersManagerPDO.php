@@ -47,10 +47,60 @@ class ChaptersManagerPDO extends ChaptersManager
     return $listeChapters;
   }
 
+  public function getPrivateList($debut = -1, $limite = -1)
+  {
+    $sql = 'SELECT id, chapitre, titre, contenu, auteur, publication, dateAjout, dateModif FROM chapters WHERE publication = 0 ORDER BY id DESC';
+    
+    if ($debut != -1 || $limite != -1)
+    {
+      $sql .= ' LIMIT '.(int) $limite.' OFFSET '.(int) $debut;
+    }
+    
+    $requete = $this->dao->query($sql);
+    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Chapters');
+    
+    $listeChapters = $requete->fetchAll();
+    
+    foreach ($listeChapters as $chapters)
+    {
+      $chapters->setDateAjout(new \DateTime($chapters->dateAjout()));
+      $chapters->setDateModif(new \DateTime($chapters->dateModif()));
+    }
+    
+    $requete->closeCursor();
+    
+    return $listeChapters;
+  }
+  
+  public function getPublicList($debut = -1, $limite = -1)
+  {
+    $sql = 'SELECT id, chapitre, titre, contenu, auteur, publication, dateAjout, dateModif FROM chapters WHERE publication = 1 ORDER BY id DESC';
+  
+    if ($debut != -1 || $limite != -1)
+    {
+      $sql .= ' LIMIT '.(int) $limite.' OFFSET '.(int) $debut;
+    }
+    
+    $requete = $this->dao->query($sql);
+    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Chapters');
+    
+    $listeChapters = $requete->fetchAll();
+    
+    foreach ($listeChapters as $chapters)
+    {
+      $chapters->setDateAjout(new \DateTime($chapters->dateAjout()));
+      $chapters->setDateModif(new \DateTime($chapters->dateModif()));
+    }
+    
+    $requete->closeCursor();
+    
+    return $listeChapters;
+  }
+
   public function getSummaryList($debut = -1, $limite = -1)
   {
-    $sql = 'SELECT id, chapitre, titre, dateAjout, dateModif FROM chapters ORDER BY chapitre ASC';
-    
+    $sql = 'SELECT id, chapitre, titre, publication, dateAjout, dateModif FROM chapters WHERE publication = 1 ORDER BY chapitre ASC';
+
     if ($debut != -1 || $limite != -1)
     {
       $sql .= ' LIMIT '.(int) $limite.' OFFSET '.(int) $debut;
@@ -90,14 +140,15 @@ class ChaptersManagerPDO extends ChaptersManager
     return null;
   }
     
-  protected function modify(Chapters $chapters)
+  public function modify(Chapters $chapters)
   {
-    $requete = $this->dao->prepare('UPDATE chapters SET chapitre = :chapitre, titre = :titre, contenu = :contenu, auteur = :auteur, dateModif = NOW() WHERE id = :id');
+    $requete = $this->dao->prepare('UPDATE chapters SET chapitre = :chapitre, titre = :titre, contenu = :contenu, auteur = :auteur, publication = :publication, dateModif = NOW() WHERE id = :id');
     
     $requete->bindValue(':chapitre', $chapters->chapitre());
     $requete->bindValue(':titre', $chapters->titre());
     $requete->bindValue(':contenu', $chapters->contenu());
     $requete->bindValue(':auteur', $chapters->auteur());
+    $requete->bindValue(':publication', $chapters->publication());
     $requete->bindValue(':id', $chapters->id(), \PDO::PARAM_INT);
     
     $requete->execute();
