@@ -56,6 +56,11 @@ class CommentsManagerPDO extends CommentsManager
     return $comments;
   }
 
+  public function countReport()
+  {
+    return $this->dao->query('SELECT COUNT(*) FROM comments WHERE signalement > 0 AND ignorer = 0')->fetchColumn();
+  }
+
   public function getListOfignored()
   {
     $q = $this->dao->prepare('SELECT id, chapters, auteur, contenu, signalement, ignorer, date FROM comments WHERE ignorer = :ignorer ORDER BY signalement DESC');
@@ -68,10 +73,15 @@ class CommentsManagerPDO extends CommentsManager
     return $comments;
   }
 
+  public function countIgnored()
+  {
+    return $this->dao->query('SELECT COUNT(*) FROM comments WHERE ignorer = 1')->fetchColumn();
+  }
+  
+
   public function modify(Comment $comment){
     $requete = $this->dao->prepare('UPDATE comments SET auteur = :auteur, contenu = :contenu, signalement = :signalement, ignorer = :ignorer WHERE id = :id');
   
-
     $requete->bindValue(':auteur', $comment->auteur());
     $requete->bindValue(':contenu', $comment->contenu());
     $requete->bindValue(':signalement', $comment->signalement());    
@@ -87,7 +97,7 @@ class CommentsManagerPDO extends CommentsManager
       throw new \InvalidArgumentException('L\'identifiant du commentaire passé doit être un nombre entier valide');
     }
     
-    $q = $this->dao->prepare('SELECT id, chapters, auteur, contenu, signalement, date FROM comments WHERE id = :id');
+    $q = $this->dao->prepare('SELECT id, chapters, auteur, contenu, signalement, ignorer, date FROM comments WHERE id = :id');
     $q->bindValue(':id', $id, \PDO::PARAM_INT);
     $q->execute();
     

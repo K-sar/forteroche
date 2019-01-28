@@ -1,4 +1,4 @@
-<p style="text-align: center">Il y a actuellement  commentaires signalés. En voici la liste :</p>
+<p style="text-align: center">Il y a actuellement <?= $numberReported ?> commentaires signalés. En voici la liste :</p>
 
 <table class="table table-hover">
   <thead>
@@ -32,7 +32,7 @@
   ?>
   </tbody>
 </table>
-<p style="text-align: center">Il y a actuellement  commentaires ignorés. En voici la liste :</p>
+<p style="text-align: center">Il y a actuellement <?= $numberIgnored ?> commentaires ignorés. En voici la liste :</p>
 
 <table class="table table-hover">
   <thead>

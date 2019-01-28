@@ -11,27 +11,6 @@ use \OCFram\FormHandler;
  
 class ChaptersController extends BackController
 {
-  public function executeDelete(HTTPRequest $request)
-  {
-    $chaptersId = $request->getData('id');
- 
-    $this->managers->getManagerOf('Chapters')->delete($chaptersId);
-    $this->managers->getManagerOf('Comments')->deleteFromChapters($chaptersId);
- 
-    $this->app->user()->setFlash('Le chapitre a bien été supprimé !');
- 
-    $this->app->httpResponse()->redirect('/admin');
-  }
- 
-  public function executeDeleteComment(HTTPRequest $request)
-  {
-    $this->managers->getManagerOf('Comments')->delete($request->getData('id'));
- 
-    $this->app->user()->setFlash('Le commentaire a bien été supprimé !');
- 
-    $this->app->httpResponse()->redirect('/admin');
-  }
- 
   public function executeIndex(HTTPRequest $request)
   {
     $this->page->addVar('title', 'Gestion des chapitres');
@@ -54,6 +33,18 @@ class ChaptersController extends BackController
     $this->processForm($request);
  
     $this->page->addVar('title', 'Modification d\'un chapitre');
+  }
+ 
+  public function executeDelete(HTTPRequest $request)
+  {
+    $chaptersId = $request->getData('id');
+ 
+    $this->managers->getManagerOf('Chapters')->delete($chaptersId);
+    $this->managers->getManagerOf('Comments')->deleteFromChapters($chaptersId);
+ 
+    $this->app->user()->setFlash('Le chapitre a bien été supprimé !');
+ 
+    $this->app->httpResponse()->redirect('/admin');
   }
  
   public function executeUpdateComment(HTTPRequest $request)
@@ -87,6 +78,46 @@ class ChaptersController extends BackController
     }
  
     $this->page->addVar('form', $form->createView());
+  }
+
+  public function executeDeleteComment(HTTPRequest $request)
+  {
+    $this->managers->getManagerOf('Comments')->delete($request->getData('id'));
+ 
+    $this->app->user()->setFlash('Le commentaire a bien été supprimé !');
+ 
+    $this->app->httpResponse()->redirect('/admin');
+  }
+
+  public function executeReport()
+  {    
+    $this->page->addVar('title', 'Modération des commentaires');
+
+    $Reported = $this->managers->getManagerOf('Comments');
+    $Ignored = $this->managers->getManagerOf('Comments');
+  
+    $this->page->addVar('commentsReported', $Reported->getListOfReport());
+    $this->page->addVar('commentsIgnored', $Ignored->getListOfIgnored());
+    $this->page->addVar('numberReported', $Reported->countReport());
+    $this->page->addVar('numberIgnored', $Ignored->countIgnored());
+  }
+
+  public function executeIgnoringComment(HTTPRequest $request)
+  {    
+    $comment = $this->managers->getManagerOf('Comments')->get($request->getData('id'));
+    $comment->setIgnorer(true);
+    $this->managers->getManagerOf('Comments')->modify($comment);
+
+    $this->app->httpResponse()->redirect('report.html');
+  }
+
+  public function executeRemindingComment(HTTPRequest $request)
+  {    
+    $comment = $this->managers->getManagerOf('Comments')->get($request->getData('id'));
+    $comment->setIgnorer(0);
+    $this->managers->getManagerOf('Comments')->modify($comment);
+
+    $this->app->httpResponse()->redirect('report.html');
   }
  
   public function processForm(HTTPRequest $request)
@@ -133,35 +164,5 @@ class ChaptersController extends BackController
     }
  
     $this->page->addVar('form', $form->createView());
-  }
-
-  public function executeReport()
-  {
-    $commentsReported = $this->managers->getManagerOf('Comments')->getListOfReport();
-    $commentsIgnored = $this->managers->getManagerOf('Comments')->getListOfIgnored();
-  
-    $this->page->addVar('commentsReported', $commentsReported);
-    $this->page->addVar('commentsIgnored', $commentsIgnored);
-    $this->page->addVar('title', 'Modération des commentaires');
-  }
-
-  public function executeIgnoringComment(HTTPRequest $request)
-  {    
-    $comment = $this->managers->getManagerOf('Comments')->get($request->getData('id'));
-    $comment->setIgnorer(true);
-    $this->managers->getManagerOf('Comments')->modify($comment);
-
-    $this->app->user()->setFlash('Le commentaire a bien été ignoré, merci !');
-    $this->app->httpResponse()->redirect('report.html');
-  }
-
-  public function executeRemindingComment(HTTPRequest $request)
-  {    
-    $comment = $this->managers->getManagerOf('Comments')->get($request->getData('id'));
-    $comment->setIgnorer(0);
-    $this->managers->getManagerOf('Comments')->modify($comment);
-
-    $this->app->user()->setFlash('Le commentaire a bien été remonté, merci !');
-    $this->app->httpResponse()->redirect('report.html');
   }
 }
