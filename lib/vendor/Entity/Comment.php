@@ -9,7 +9,8 @@ class Comment extends Entity
             $auteur,
             $contenu,
             $date,
-            $signalement;
+            $signalement,
+            $ignore;
 
   const AUTEUR_INVALIDE = 1;
   const CONTENU_INVALIDE = 2;
@@ -54,6 +55,11 @@ class Comment extends Entity
     $this->signalement = $signalement;
   }
 
+  public function setIgnore($ignore)
+  {
+    $this->ignore = $ignore;
+  }
+
   public function chapters()
   {
     return $this->chapters;
@@ -77,5 +83,10 @@ class Comment extends Entity
   public function signalement()
   {
     return $this->signalement;
+  }
+
+  public function ignore()
+  {
+    return $this->ignore;
   }
 }

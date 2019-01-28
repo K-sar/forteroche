@@ -35,6 +35,9 @@
               <a class="nav-link" href="/admin/chapters-insert.html">Ajouter un chapitre</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="/admin/report.html">Modération</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="/logout">Déconnexion</a>
             </li>
             <?php } ?>

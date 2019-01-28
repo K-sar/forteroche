@@ -22,7 +22,7 @@
           <td>', $chapters['auteur'], '</td>
           <td>', $chapters['dateAjout']->format('d/m/Y à H\hi'), '</td>
           <td>', ($chapters['dateAjout'] == $chapters['dateModif'] ? '-' : 'le '.$chapters['dateModif']->format('d/m/Y à H\hi')), '</td>
-          <td><div class="btn-group" role="group" aria-label="Basic example"><button type="button" class="btn btn-secondary"><a href="admin/chapters-update-', $chapters['id'], '.html" style="text-decoration:none; color:black">Modifier</a></button><button type="button" class="btn btn-secondary"><a href="admin/chapters-delete-', $chapters['id'], '.html" style="text-decoration:none; color:black">Supprimer</a></button></div>
+          <td><div class="btn-group" role="group" aria-label="Basic example"><a href="admin/chapters-update-', $chapters['id'], '.html" class="btn btn-secondary">Modifier</a><a href="admin/chapters-delete-', $chapters['id'], '.html" class="btn btn-secondary">Supprimer</a></div>
         </tr>',
         "\n";
   }

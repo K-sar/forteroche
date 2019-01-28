@@ -22,10 +22,10 @@ foreach ($comments as $comment)
   <legend>
     Posté par <strong><?= htmlspecialchars($comment['auteur']) ?></strong> le <?= $comment['date']->format('d/m/Y à H\hi') ?>
     <div class="btn-group" role="group" aria-label="Basic example">
-      <a href="report-comment-<?= $comment['id'] ?>.html">Signaler</a>  
+      <a href="report-comment-<?= $comment['id'] ?>.html" class="btn btn-outline-primary">Signaler</a>  
       <?php if ($user->isAuthenticated()) { ?>
-      <a href="admin/comment-update-<?= $comment['id'] ?>.html" class="btn btn-secondary">Modifier</a>
-      <a href="admin/comment-delete-<?= $comment['id'] ?>.html" class="btn btn-danger" >Supprimer</a>
+      <a href="admin/comment-update-<?= $comment['id'] ?>.html" class="btn btn-outline-secondary">Modifier</a>
+      <a href="admin/comment-delete-<?= $comment['id'] ?>.html" class="btn btn-outline-danger" >Supprimer</a>
       <?php } ?>  
     </div>
   </legend>

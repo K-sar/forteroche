@@ -5,8 +5,7 @@
   <route url="/admin/chapters-update-([0-9]+)\.html" module="Chapters" action="update" vars="id" ></route>
   <route url="/admin/chapters-delete-([0-9]+)\.html" module="Chapters" action="delete" vars="id" ></route>  
   <route url="/admin/comment-update-([0-9]+)\.html" module="Chapters" action="updateComment" vars="id" />
-  <route url="/admin/comment-delete-([0-9]+)\.html" module="Chapters" action="deleteComment" vars="id" />
-  
+  <route url="/admin/comment-delete-([0-9]+)\.html" module="Chapters" action="deleteComment" vars="id" />  
   <route url="/admin/report\.html" module="Chapters" action="report" />
   <route url="/logout" module="Connexion" action="logout" ></route>
 </routes>
