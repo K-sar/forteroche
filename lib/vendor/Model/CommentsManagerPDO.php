@@ -54,12 +54,7 @@ class CommentsManagerPDO extends CommentsManager
     $q->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Comment');
     $comments = $q->fetchAll();
     return $comments;
-  }
-
-  public function countReport()
-  {
-    return $this->dao->query('SELECT COUNT(*) FROM comments WHERE signalement > 0 AND ignorer = 0')->fetchColumn();
-  }
+  }  
 
   public function getListOfignored()
   {
@@ -72,12 +67,6 @@ class CommentsManagerPDO extends CommentsManager
     $comments = $q->fetchAll();
     return $comments;
   }
-
-  public function countIgnored()
-  {
-    return $this->dao->query('SELECT COUNT(*) FROM comments WHERE ignorer = 1')->fetchColumn();
-  }
-  
 
   public function modify(Comment $comment){
     $requete = $this->dao->prepare('UPDATE comments SET auteur = :auteur, contenu = :contenu, signalement = :signalement, ignorer = :ignorer WHERE id = :id');

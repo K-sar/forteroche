@@ -1,4 +1,4 @@
-<p>Il y a actuellement <?= $nombreChapters ?> chapitres. En voici la liste :</p>
+<p style="text-align: center">Il y a actuellement <?= $nombreChapters ?> chapitres. En voici la liste :</p>
 
 <table class="table table-hover">
   <thead>

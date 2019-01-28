@@ -15,7 +15,7 @@ class ChaptersController extends BackController
     $nombreCaracteres = $this->app->config()->get('nombre_caracteres');
  
     // On ajoute une définition pour le titre.
-    $this->page->addVar('title', 'Liste des '.$nombreChapters.' dernières chapters');
+    $this->page->addVar('title', 'Liste des '.$nombreChapters.' derniers chapitres');
  
     // On récupère le manager des chaptires.
     $manager = $this->managers->getManagerOf('Chapters');

@@ -91,15 +91,39 @@ class ChaptersController extends BackController
 
   public function executeReport()
   {    
+    $nombreCaracteres = $this->app->config()->get('nombre_caracteres');
     $this->page->addVar('title', 'Modération des commentaires');
 
-    $Reported = $this->managers->getManagerOf('Comments');
-    $Ignored = $this->managers->getManagerOf('Comments');
+    $commentsReported = $this->managers->getManagerOf('Comments')->getListOfReport();
+
+    foreach ($commentsReported as $commentR)
+    {
+      if (strlen($commentR->contenu()) > $nombreCaracteres)
+      {
+        $debut = substr($commentR->contenu(), 0, $nombreCaracteres);
+        $debut = substr($debut, 0, strrpos($debut, ' ')) . '...';
+ 
+        $commentR->setContenu($debut);
+      }
+    }
+
+    $commentsIgnored = $this->managers->getManagerOf('Comments')->getListOfIgnored();
+
+    foreach ($commentsIgnored as $commentI)
+    {
+      if (strlen($commentI->contenu()) > $nombreCaracteres)
+      {
+        $debut = substr($commentI->contenu(), 0, $nombreCaracteres);
+        $debut = substr($debut, 0, strrpos($debut, ' ')) . '...';
+ 
+        $commentI->setContenu($debut);
+      }
+    }
   
-    $this->page->addVar('commentsReported', $Reported->getListOfReport());
-    $this->page->addVar('commentsIgnored', $Ignored->getListOfIgnored());
-    $this->page->addVar('numberReported', $Reported->countReport());
-    $this->page->addVar('numberIgnored', $Ignored->countIgnored());
+    $this->page->addVar('commentsReported', $commentsReported);
+    $this->page->addVar('commentsIgnored', $commentsIgnored);
+    $this->page->addVar('numberReported', count($commentsReported));
+    $this->page->addVar('numberIgnored', count($commentsIgnored));
   }
 
   public function executeIgnoringComment(HTTPRequest $request)
