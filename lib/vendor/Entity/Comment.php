@@ -10,7 +10,7 @@ class Comment extends Entity
             $contenu,
             $date,
             $signalement,
-            $ignore;
+            $ignorer;
 
   const AUTEUR_INVALIDE = 1;
   const CONTENU_INVALIDE = 2;
@@ -55,9 +55,9 @@ class Comment extends Entity
     $this->signalement = $signalement;
   }
 
-  public function setIgnore($ignore)
+  public function setIgnorer($ignorer)
   {
-    $this->ignore = $ignore;
+    $this->ignorer = $ignorer;
   }
 
   public function chapters()
@@ -85,8 +85,8 @@ class Comment extends Entity
     return $this->signalement;
   }
 
-  public function ignore()
+  public function ignorer()
   {
-    return $this->ignore;
+    return $this->ignorer;
   }
 }

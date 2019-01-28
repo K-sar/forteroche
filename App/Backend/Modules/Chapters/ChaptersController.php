@@ -137,9 +137,31 @@ class ChaptersController extends BackController
 
   public function executeReport()
   {
-    $comments = $this->managers->getManagerOf('Comments')->getListOfReport();
+    $commentsReported = $this->managers->getManagerOf('Comments')->getListOfReport();
+    $commentsIgnored = $this->managers->getManagerOf('Comments')->getListOfIgnored();
   
-    $this->page->addVar('comments', $comments);
+    $this->page->addVar('commentsReported', $commentsReported);
+    $this->page->addVar('commentsIgnored', $commentsIgnored);
     $this->page->addVar('title', 'Modération des commentaires');
+  }
+
+  public function executeIgnoringComment(HTTPRequest $request)
+  {    
+    $comment = $this->managers->getManagerOf('Comments')->get($request->getData('id'));
+    $comment->setIgnorer(true);
+    $this->managers->getManagerOf('Comments')->modify($comment);
+
+    $this->app->user()->setFlash('Le commentaire a bien été ignoré, merci !');
+    $this->app->httpResponse()->redirect('report.html');
+  }
+
+  public function executeRemindingComment(HTTPRequest $request)
+  {    
+    $comment = $this->managers->getManagerOf('Comments')->get($request->getData('id'));
+    $comment->setIgnorer(0);
+    $this->managers->getManagerOf('Comments')->modify($comment);
+
+    $this->app->user()->setFlash('Le commentaire a bien été remonté, merci !');
+    $this->app->httpResponse()->redirect('report.html');
   }
 }

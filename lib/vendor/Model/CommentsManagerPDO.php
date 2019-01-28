@@ -44,9 +44,23 @@ class CommentsManagerPDO extends CommentsManager
   
   public function getListOfReport()
   {
-    $q = $this->dao->prepare('SELECT id, chapters, auteur, contenu, signalement, date FROM comments WHERE signalement > :signalement ORDER BY signalement DESC');
+    $q = $this->dao->prepare('SELECT id, chapters, auteur, contenu, signalement, ignorer, date FROM comments WHERE signalement > :signalement AND ignorer = :ignorer ORDER BY signalement DESC');
 
     $q->bindValue(':signalement', 0, \PDO::PARAM_INT);
+    $q->bindValue(':ignorer', false, \PDO::PARAM_INT);
+
+    $q->execute();
+    
+    $q->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Comment');
+    $comments = $q->fetchAll();
+    return $comments;
+  }
+
+  public function getListOfignored()
+  {
+    $q = $this->dao->prepare('SELECT id, chapters, auteur, contenu, signalement, ignorer, date FROM comments WHERE ignorer = :ignorer ORDER BY signalement DESC');
+
+    $q->bindValue(':ignorer', true, \PDO::PARAM_INT);
     $q->execute();
     
     $q->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Comment');
@@ -55,12 +69,13 @@ class CommentsManagerPDO extends CommentsManager
   }
 
   public function modify(Comment $comment){
-    $requete = $this->dao->prepare('UPDATE comments SET auteur = :auteur, contenu = :contenu, signalement = :signalement WHERE id = :id');
+    $requete = $this->dao->prepare('UPDATE comments SET auteur = :auteur, contenu = :contenu, signalement = :signalement, ignorer = :ignorer WHERE id = :id');
   
 
     $requete->bindValue(':auteur', $comment->auteur());
     $requete->bindValue(':contenu', $comment->contenu());
-    $requete->bindValue(':signalement', $comment->signalement());
+    $requete->bindValue(':signalement', $comment->signalement());    
+    $requete->bindValue(':ignorer', $comment->ignorer());
     $requete->bindValue(':id', $comment->id(), \PDO::PARAM_INT);
     
     $requete->execute();
