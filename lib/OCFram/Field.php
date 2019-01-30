@@ -11,6 +11,7 @@ abstract class Field
   protected $validators = [];
   protected $value;
   protected $placeholder;  
+  protected $maxFileSize;    
   
   public function __construct(array $options = [])
   {

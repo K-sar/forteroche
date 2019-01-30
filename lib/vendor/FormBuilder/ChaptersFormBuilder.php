@@ -4,6 +4,7 @@ namespace FormBuilder;
 use \OCFram\FormBuilder;
 use \OCFram\StringField;
 use \OCFram\TextField;
+use \OCFram\FileField;
 use \OCFram\MaxLengthValidator;
 use \OCFram\NotNullValidator;
 
@@ -48,6 +49,10 @@ class ChaptersFormBuilder extends FormBuilder
           new NotNullValidator('Merci de spécifier l\'auteur du chapitre'),       
         ],
         'value' => 'Jean Forteroche',
+       ]))       ->add(new FileField([
+        'maxFileSize' => 1048576,
+        'label' => 'Image',
+        'name' => 'image',
        ]));
   }
 }

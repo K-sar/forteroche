@@ -11,7 +11,8 @@ class Chapters extends Entity
             $auteur,
             $publication,
             $dateAjout,
-            $dateModif;
+            $dateModif,
+            $image;
 
 
   const AUTEUR_INVALIDE = 1;
@@ -68,6 +69,11 @@ class Chapters extends Entity
   public function setPublication($publication)
   {
     $this->publication = $publication;
+  }  
+  
+  public function setImage($image)
+  {
+    $this->image = $image;
   }
 
   // GETTERS //
@@ -105,5 +111,10 @@ class Chapters extends Entity
   public function publication()
   {
     return $this->publication;
+  }
+
+  public function image()
+  {
+    return $this->image;
   }
 }

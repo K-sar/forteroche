@@ -1,5 +1,5 @@
 <h2>Ajouter un chapitre</h2>
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
   <p>
     <?= $form ?>
     
