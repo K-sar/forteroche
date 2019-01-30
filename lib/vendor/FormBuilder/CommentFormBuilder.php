@@ -18,7 +18,8 @@ class CommentFormBuilder extends FormBuilder
         'validators' => [
           new MaxLengthValidator('L\'auteur spécifié est trop long (50 caractères maximum)', 50),
           new NotNullValidator('Merci de spécifier l\'auteur du commentaire'),
-        ],
+        ],        
+        'placeholder' => 'Inserez votre nom ici',
        ]))
        ->add(new TextField([
         'label' => 'Contenu',
@@ -27,7 +28,8 @@ class CommentFormBuilder extends FormBuilder
         'cols' => 50,
         'validators' => [
           new NotNullValidator('Merci de spécifier votre commentaire'),
-        ],
+        ],        
+        'placeholder' => 'Inserez votre commentaire ici',
        ]));
   }
 }

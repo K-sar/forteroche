@@ -20,6 +20,11 @@ class StringField extends Field
     {
       $widget .= ' value="'.htmlspecialchars($this->value).'"';
     }
+
+    if (!empty($this->placeholder))
+    {
+      $widget .= ' placeholder="'.htmlspecialchars($this->placeholder).'"';
+    }
     
     if (!empty($this->maxLength))
     {

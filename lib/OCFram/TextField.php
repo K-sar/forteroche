@@ -27,12 +27,19 @@ class TextField extends Field
       $widget .= ' rows="'.$this->rows.'"';
     }
     
-    $widget .= '>';
+    //$widget .= '>';
     
     if (!empty($this->value))
     {
       $widget .= htmlspecialchars($this->value);
     }
+
+    if (!empty($this->placeholder))
+    {
+      $widget .= ' placeholder="'.htmlspecialchars($this->placeholder).'"';
+    }
+
+    $widget .= '>';
     
     return $widget.'</textarea>';
   }
