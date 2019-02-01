@@ -91,7 +91,7 @@ class ChaptersController extends BackController
   {
     $comment = $this->managers->getManagerOf('Comments')->get($request->getData('id'));
     $comment->setSignalement($comment->signalement()+1);
-    $this->managers->getManagerOf('Comments')->modify($comment);
+    $this->managers->getManagerOf('Comments')->saveModeration($comment);
 
     $this->app->user()->setFlash('Le commentaire a bien été signalé, merci !');
     $this->app->httpResponse()->redirect('chapters-'.$comment->chapters().'.html');

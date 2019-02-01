@@ -28,11 +28,6 @@ class TextField extends Field
     }
     
     //$widget .= '>';
-    
-    if (!empty($this->value))
-    {
-      $widget .= htmlspecialchars($this->value);
-    }
 
     if (!empty($this->placeholder))
     {
@@ -40,6 +35,11 @@ class TextField extends Field
     }
 
     $widget .= '>';
+        
+    if (!empty($this->value))
+    {
+      $widget .= htmlspecialchars($this->value);
+    }
     
     return $widget.'</textarea>';
   }

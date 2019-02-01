@@ -16,7 +16,7 @@ class StringField extends Field
     
     $widget .= '<label>'.$this->label.'</label><input type="text" name="'.$this->name.'"';
     
-    if (!empty($this->value))
+    if (!is_null($this->value))
     {
       $widget .= ' value="'.htmlspecialchars($this->value).'"';
     }

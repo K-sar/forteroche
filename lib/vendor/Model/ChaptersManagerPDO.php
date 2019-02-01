@@ -124,7 +124,7 @@ class ChaptersManagerPDO extends ChaptersManager
   
   public function getUnique($id)
   {
-    $requete = $this->dao->prepare('SELECT id, chapitre, titre, contenu, auteur, dateAjout, dateModif FROM chapters WHERE id = :id');
+    $requete = $this->dao->prepare('SELECT id, chapitre, titre, contenu, auteur, publication, dateAjout, dateModif FROM chapters WHERE id = :id');
     $requete->bindValue(':id', (int) $id, \PDO::PARAM_INT);
     $requete->execute();
     
@@ -140,8 +140,13 @@ class ChaptersManagerPDO extends ChaptersManager
     return null;
   }
     
-  public function modify(Chapters $chapters)
+  protected function modify(Chapters $chapters)
   {
+    if (is_null($chapters->publication()))
+    {
+      $chapters->setPublication(0);
+    }
+
     $requete = $this->dao->prepare('UPDATE chapters SET chapitre = :chapitre, titre = :titre, contenu = :contenu, auteur = :auteur, publication = :publication, dateModif = NOW() WHERE id = :id');
     
     $requete->bindValue(':chapitre', $chapters->chapitre());

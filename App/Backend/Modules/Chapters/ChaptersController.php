@@ -50,20 +50,17 @@ class ChaptersController extends BackController
     $this->app->httpResponse()->redirect('/admin');
   }
 
-  public function executePublicChapter(HTTPRequest $request)
+  public function executePublishChapter(HTTPRequest $request)
   {    
     $chapter = $this->managers->getManagerOf('Chapters')->getUnique($request->getData('id'));
-    $chapter->setPublication(true);
-    $this->managers->getManagerOf('Chapters')->modify($chapter);
 
-    $this->app->httpResponse()->redirect('/admin');
-  }
+    if($chapter->publication() == 1) {
+      $chapter->setPublication(0);
+    } else {
+      $chapter->setPublication(1);
+    }
 
-  public function executePrivateChapter(HTTPRequest $request)
-  {    
-    $chapter = $this->managers->getManagerOf('Chapters')->getUnique($request->getData('id'));
-    $chapter->setPublication(0);
-    $this->managers->getManagerOf('Chapters')->modify($chapter);
+    $this->managers->getManagerOf('Chapters')->save($chapter);
 
     $this->app->httpResponse()->redirect('/admin');
   }
@@ -147,20 +144,17 @@ class ChaptersController extends BackController
     $this->page->addVar('numberIgnored', count($commentsIgnored));
   }
 
-  public function executeIgnoringComment(HTTPRequest $request)
+  public function executeModeratingComment(HTTPRequest $request)
   {    
     $comment = $this->managers->getManagerOf('Comments')->get($request->getData('id'));
-    $comment->setIgnorer(true);
-    $this->managers->getManagerOf('Comments')->modify($comment);
 
-    $this->app->httpResponse()->redirect('report.html');
-  }
+    if($comment->ignorer() == 1) {
+      $comment->setIgnorer(0);
+    } else {
+      $comment->setIgnorer(1);
+    }
 
-  public function executeRemindingComment(HTTPRequest $request)
-  {    
-    $comment = $this->managers->getManagerOf('Comments')->get($request->getData('id'));
-    $comment->setIgnorer(0);
-    $this->managers->getManagerOf('Comments')->modify($comment);
+    $this->managers->getManagerOf('Comments')->saveModeration($comment);
 
     $this->app->httpResponse()->redirect('report.html');
   }
@@ -173,7 +167,8 @@ class ChaptersController extends BackController
         'chapitre' => $request->postData('chapitre'),
         'titre' => $request->postData('titre'),
         'contenu' => $request->postData('contenu'),
-        'auteur' => $request->postData('auteur')
+        'auteur' => $request->postData('auteur'),
+        'publication' => $request->postData('publication')
       ]);
  
       if ($request->getExists('id'))

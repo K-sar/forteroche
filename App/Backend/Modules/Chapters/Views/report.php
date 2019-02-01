@@ -22,7 +22,7 @@
             <td>
               <div class="btn-group" role="group" aria-label="Basic example">
                 <a href="../chapters-', $commentR['chapters'], '.html" class="btn btn-secondary">Voir</a>                
-                <a href="comment-ignoring-', $commentR['id'], '.html" class="btn btn-secondary">Ignorer</a>
+                <a href="comment-moderating-', $commentR['id'], '.html" class="btn btn-secondary">Ignorer</a>
                 <a href="comment-update-', $commentR['id'], '.html" class="btn btn-secondary">Modifier</a>
                 <a href="comment-delete-', $commentR['id'], '.html" class="btn btn-secondary">Supprimer</a>
               </div>
@@ -56,7 +56,7 @@
             <td>
               <div class="btn-group" role="group" aria-label="Basic example">
                 <a href="../chapters-', $commentI['chapters'], '.html" class="btn btn-secondary">Voir</a>                
-                <a href="comment-reminding-', $commentI['id'], '.html" class="btn btn-secondary">Remonter</a>
+                <a href="comment-moderating-', $commentI['id'], '.html" class="btn btn-secondary">Remonter</a>
                 <a href="comment-update-', $commentI['id'], '.html" class="btn btn-secondary">Modifier</a>
                 <a href="comment-delete-', $commentI['id'], '.html" class="btn btn-secondary">Supprimer</a>
               </div>
