@@ -8,11 +8,11 @@
   
   <route url="/admin/chapters-publish-([0-9]+)\.html" module="Chapters" action="publishChapter" vars="id" /> 
 
-  <route url="/admin/comment-update-([0-9]+)\.html" module="Chapters" action="updateComment" vars="id" />
-  <route url="/admin/comment-delete-([0-9]+)\.html" module="Chapters" action="deleteComment" vars="id" />
+  <route url="/admin/comment-update-([0-9]+)\.html" module="Comments" action="updateComment" vars="id" />
+  <route url="/admin/comment-delete-([0-9]+)\.html" module="Comments" action="deleteComment" vars="id" />
 
-  <route url="/admin/report\.html" module="Chapters" action="report" />
-  <route url="/admin/comment-moderating-([0-9]+)\.html" module="Chapters" action="moderatingComment" vars="id" />  
+  <route url="/admin/report\.html" module="Comments" action="index" />
+  <route url="/admin/comment-moderating-([0-9]+)\.html" module="Comments" action="moderatingComment" vars="id" />  
 
 
   <route url="/logout" module="Connexion" action="logout" ></route>
