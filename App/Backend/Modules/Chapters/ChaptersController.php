@@ -71,6 +71,7 @@ class ChaptersController extends BackController
     {
       $chapters = new Chapters([
         'chapitre' => $request->postData('chapitre'),
+        'complement' => $request->postData('complement'),
         'titre' => $request->postData('titre'),
         'contenu' => $request->postData('contenu'),
         'auteur' => $request->postData('auteur'),

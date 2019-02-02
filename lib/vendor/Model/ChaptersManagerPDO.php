@@ -7,9 +7,10 @@ class ChaptersManagerPDO extends ChaptersManager
 {
   protected function add(Chapters $chapters)
   {
-    $requete = $this->dao->prepare('INSERT INTO chapters SET chapitre = :chapitre, titre = :titre, contenu = :contenu, auteur = :auteur, publication = :publication, dateAjout = NOW(), dateModif = NOW()');
+    $requete = $this->dao->prepare('INSERT INTO chapters SET chapitre = :chapitre, complement = :complement, titre = :titre, contenu = :contenu, auteur = :auteur, publication = :publication, dateAjout = NOW(), dateModif = NOW()');
     
     $requete->bindValue(':chapitre', $chapters->chapitre());
+    $requete->bindValue(':complement', $chapters->complement());
     $requete->bindValue(':titre', $chapters->titre());
     $requete->bindValue(':contenu', $chapters->contenu());
     $requete->bindValue(':auteur', $chapters->auteur());    
@@ -25,7 +26,7 @@ class ChaptersManagerPDO extends ChaptersManager
     
   public function getList($debut = -1, $limite = -1)
   {
-    $sql = 'SELECT id, chapitre, titre, contenu, auteur, dateAjout, dateModif FROM chapters ORDER BY id DESC';
+    $sql = 'SELECT id, chapitre, complement, titre, contenu, auteur, dateAjout, dateModif FROM chapters ORDER BY id DESC';
     
     if ($debut != -1 || $limite != -1)
     {
@@ -50,7 +51,7 @@ class ChaptersManagerPDO extends ChaptersManager
 
   public function getPrivateList($debut = -1, $limite = -1)
   {
-    $sql = 'SELECT id, chapitre, titre, contenu, auteur, publication, dateAjout, dateModif FROM chapters WHERE publication = 0 ORDER BY id DESC';
+    $sql = 'SELECT id, chapitre, complement, titre, contenu, auteur, publication, dateAjout, dateModif FROM chapters WHERE publication = 0 ORDER BY id DESC';
     
     if ($debut != -1 || $limite != -1)
     {
@@ -75,7 +76,7 @@ class ChaptersManagerPDO extends ChaptersManager
   
   public function getPublicList($debut = -1, $limite = -1)
   {
-    $sql = 'SELECT id, chapitre, titre, contenu, auteur, publication, dateAjout, dateModif FROM chapters WHERE publication = 1 ORDER BY id DESC';
+    $sql = 'SELECT id, chapitre, complement, titre, contenu, auteur, publication, dateAjout, dateModif FROM chapters WHERE publication = 1 ORDER BY id DESC';
   
     if ($debut != -1 || $limite != -1)
     {
@@ -100,7 +101,7 @@ class ChaptersManagerPDO extends ChaptersManager
 
   public function getSummaryList($debut = -1, $limite = -1)
   {
-    $sql = 'SELECT id, chapitre, titre, publication, dateAjout, dateModif FROM chapters WHERE publication = 1 ORDER BY chapitre ASC';
+    $sql = 'SELECT id, chapitre, complement, titre, publication, dateAjout, dateModif FROM chapters WHERE publication = 1 ORDER BY chapitre ASC, complement ASC';
 
     if ($debut != -1 || $limite != -1)
     {
@@ -125,7 +126,7 @@ class ChaptersManagerPDO extends ChaptersManager
   
   public function getUnique($id)
   {
-    $requete = $this->dao->prepare('SELECT id, chapitre, titre, contenu, auteur, publication, dateAjout, dateModif FROM chapters WHERE id = :id');
+    $requete = $this->dao->prepare('SELECT id, chapitre, complement, titre, contenu, auteur, publication, dateAjout, dateModif FROM chapters WHERE id = :id');
     $requete->bindValue(':id', (int) $id, \PDO::PARAM_INT);
     $requete->execute();
     
@@ -147,10 +148,11 @@ class ChaptersManagerPDO extends ChaptersManager
     {
       $chapters->setPublication(0);
     }
-    
-    $requete = $this->dao->prepare('UPDATE chapters SET chapitre = :chapitre, titre = :titre, contenu = :contenu, auteur = :auteur, publication = :publication, dateModif = NOW() WHERE id = :id');
+
+    $requete = $this->dao->prepare('UPDATE chapters SET chapitre = :chapitre, complement = :complement, titre = :titre, contenu = :contenu, auteur = :auteur, publication = :publication, dateModif = NOW() WHERE id = :id');
     
     $requete->bindValue(':chapitre', $chapters->chapitre());
+    $requete->bindValue(':complement', $chapters->complement());
     $requete->bindValue(':titre', $chapters->titre());
     $requete->bindValue(':contenu', $chapters->contenu());
     $requete->bindValue(':auteur', $chapters->auteur());

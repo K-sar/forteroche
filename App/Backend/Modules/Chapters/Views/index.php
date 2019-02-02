@@ -17,7 +17,7 @@
     {
         echo '
         <tr>
-          <td>', $chaptersPublic['chapitre'], '</td>
+          <td>', $chaptersPublic['chapitre'], ' ', $chaptersPublic['complement'], '</td>
           <td>', $chaptersPublic['titre'], '</td>
           <td>', $chaptersPublic['auteur'], '</td>
           <td>', $chaptersPublic['dateAjout']->format('d/m/Y à H\hi'), '</td>
@@ -56,7 +56,7 @@
     {
         echo '
         <tr>
-          <td>', $chaptersPrivate['chapitre'], '</td>
+          <td>', $chaptersPrivate['chapitre'], ' ', $chaptersPrivate['complement'], '</td>
           <td>', $chaptersPrivate['titre'], '</td>
           <td>', $chaptersPrivate['auteur'], '</td>
           <td>', $chaptersPrivate['dateAjout']->format('d/m/Y à H\hi'), '</td>

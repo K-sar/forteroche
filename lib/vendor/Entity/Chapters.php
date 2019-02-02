@@ -6,6 +6,7 @@ use \OCFram\Entity;
 class Chapters extends Entity
 {
   protected $chapitre,
+            $complement,
             $titre,
             $contenu,
             $auteur,
@@ -28,7 +29,17 @@ class Chapters extends Entity
 
   public function setChapitre($chapitre)
   {
+    if (!is_int($chapitre))
+    {
+      $chapitre = (int) $chapitre;
+    }
+
     $this->chapitre = $chapitre;
+  }
+
+  public function setComplement($complement)
+  {
+    $this->complement = $complement;
   }
 
   public function setTitre($titre)
@@ -81,6 +92,11 @@ class Chapters extends Entity
   public function chapitre()
   {
     return $this->chapitre;
+  }
+
+  public function complement()
+  {
+    return $this->complement;
   }
 
   public function titre()
