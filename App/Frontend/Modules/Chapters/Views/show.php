@@ -2,9 +2,11 @@
   {
     echo( 'Chapitre '. $chapters['chapitre']. ' ');
   }
-  echo($chapters['complement']) ?></h2>
-
-<h2><?= $chapters['titre'] ?></h2>
+  echo($chapters['complement']);
+  if (!empty($chapters['titre']))
+  {
+    echo(' : '.$chapters['titre']);
+  }?></h2>
 <p><?= nl2br($chapters['contenu']) ?></p>
 <p>Par <em><?= $chapters['auteur'] ?></em>, le <?= $chapters['dateAjout']->format('d/m/Y à H\hi') ?></p>
 <?php if ($chapters['dateAjout'] != $chapters['dateModif']) { ?>

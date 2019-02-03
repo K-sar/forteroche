@@ -7,6 +7,14 @@ foreach ($listeChapters as $chapters)
   {
     echo( 'Chapitre '. $chapters['chapitre']. ' ');
   }
-  echo($chapters['complement']) ?> : <?= $chapters['titre'] ?></a></h2>
+
+  echo($chapters['complement']); 
+  
+  if (!empty($chapters['titre']))
+  {
+    echo(' : '.$chapters['titre']);
+  }
+  ?>
+  </a></h2>
 <?php
 }
