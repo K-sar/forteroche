@@ -27,9 +27,9 @@ class ChaptersFormBuilder extends FormBuilder
        ->add(new StringField([
         'label' => 'Complément',
         'name' => 'complement',
-        'maxLength' => 10,
+        'maxLength' => 12,
         'validators' => [
-          new MaxLengthValidator('Le complément du chapitre spécifié est trop long (10 caractères maximum)', 10),
+          new MaxLengthValidator('Le complément du chapitre spécifié est trop long (12 caractères maximum)', 12),
         ],
         'placeholder' => 'A, Bis,...',
        ]))
