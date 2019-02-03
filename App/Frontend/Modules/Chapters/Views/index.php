@@ -14,14 +14,16 @@ foreach ($listeChapters as $chapters)
   {
     echo(' : '.$chapters['titre']);
   }
-  ?></a></h2>
-  <p><?= nl2br($chapters['contenu']) ?></p>
+  ?></a>
   <div class="btn-group" role="group" aria-label="Basic example">
     <?php if ($user->isAuthenticated()) { ?>            
     <a href="admin/chapters-publish-<?= $chapters['id'] ?>.html" class="btn btn-secondary">Cacher</a>
     <a href="admin/chapters-update-<?= $chapters['id'] ?>.html" class="btn btn-secondary">Modifier</a>
     <a href="admin/chapters-delete-<?= $chapters['id'] ?>.html" class="btn btn-secondary">Supprimer</a>
     <?php } ?>  
-    </div>
+  </div>
+  </h2>
+  <p><?= nl2br($chapters['contenu']) ?></p>
+
 <?php
 }
