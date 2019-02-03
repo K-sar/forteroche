@@ -19,8 +19,8 @@ class ChaptersController extends BackController
  
     // On récupère le manager des chaptires.
     $manager = $this->managers->getManagerOf('Chapters');
- 
-    $listeChapters = $manager->getPublishList(0, $nombreChapters);
+    
+    $listeChapters = $manager->getList('publication = 1', 'datePublication DESC', 0, $nombreChapters);
  
     foreach ($listeChapters as $chapters)
     {
@@ -102,8 +102,8 @@ class ChaptersController extends BackController
     $this->page->addVar('title', 'Sommaire');
  
     $manager = $this->managers->getManagerOf('Chapters');
- 
-    $listeChapters = $manager->getSummaryList();
+    
+    $listeChapters = $manager->getList('publication = 1', 'chapitre ASC, complement ASC');
  
     $this->page->addVar('listeChapters', $listeChapters);
   }

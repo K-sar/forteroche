@@ -25,32 +25,6 @@ class ChaptersManagerPDO extends ChaptersManager
     return $this->dao->query('SELECT COUNT(*) FROM chapters')->fetchColumn();
   }
     
-  public function getList($debut = -1, $limite = -1)
-  {
-    $sql = 'SELECT id, chapitre, complement, titre, contenu, auteur, dateAjout, dateModif, datePublication FROM chapters ORDER BY id DESC';
-    
-    if ($debut != -1 || $limite != -1)
-    {
-      $sql .= ' LIMIT '.(int) $limite.' OFFSET '.(int) $debut;
-    }
-    
-    $requete = $this->dao->query($sql);
-    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Chapters');
-    
-    $listeChapters = $requete->fetchAll();
-    
-    foreach ($listeChapters as $chapters)
-    {
-      $chapters->setDateAjout(new \DateTime($chapters->dateAjout()));
-      $chapters->setDateModif(new \DateTime($chapters->dateModif()));
-      $chapters->setDatePublication(new \DateTime($chapters->datePublication()));
-    }
-    
-    $requete->closeCursor();
-    
-    return $listeChapters;
-  }
-    
   protected function modify(Chapters $chapters)
   {
     $requete = $this->dao->prepare('UPDATE chapters SET chapitre = :chapitre, complement = :complement, titre = :titre, contenu = :contenu, auteur = :auteur, dateModif = NOW() WHERE id = :id');
@@ -109,88 +83,20 @@ class ChaptersManagerPDO extends ChaptersManager
     return null;
   }
 
-  public function getPrivateList($debut = -1, $limite = -1)
+  public function getList($where, $order, $debut = -1, $limite = -1)
   {
-    $sql = 'SELECT id, chapitre, complement, titre, contenu, auteur, publication, dateAjout, dateModif, datePublication FROM chapters WHERE publication = 0 ORDER BY id DESC';
+    $sql = 'SELECT id, chapitre, complement, titre, contenu, auteur, publication, dateAjout, dateModif, datePublication FROM chapters';
     
-    if ($debut != -1 || $limite != -1)
+    if (!empty($where))
     {
-      $sql .= ' LIMIT '.(int) $limite.' OFFSET '.(int) $debut;
+      $sql .= ' WHERE '.$where;
     }
-    
-    $requete = $this->dao->query($sql);
-    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Chapters');
-    
-    $listeChapters = $requete->fetchAll();
-    
-    foreach ($listeChapters as $chapters)
-    {
-      $chapters->setDateAjout(new \DateTime($chapters->dateAjout()));
-      $chapters->setDateModif(new \DateTime($chapters->dateModif()));
-      $chapters->setDatePublication(new \DateTime($chapters->datePublication()));
-    }
-    
-    $requete->closeCursor();
-    
-    return $listeChapters;
-  }
-  
-  public function getPublicList($debut = -1, $limite = -1)
-  {
-    $sql = 'SELECT id, chapitre, complement, titre, contenu, auteur, publication, dateAjout, dateModif, datePublication FROM chapters WHERE publication = 1 ORDER BY chapitre ASC, complement ASC';
-  
-    if ($debut != -1 || $limite != -1)
-    {
-      $sql .= ' LIMIT '.(int) $limite.' OFFSET '.(int) $debut;
-    }
-    
-    $requete = $this->dao->query($sql);
-    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Chapters');
-    
-    $listeChapters = $requete->fetchAll();
-    
-    foreach ($listeChapters as $chapters)
-    {
-      $chapters->setDateAjout(new \DateTime($chapters->dateAjout()));
-      $chapters->setDateModif(new \DateTime($chapters->dateModif()));
-      $chapters->setDatePublication(new \DateTime($chapters->datePublication()));
-    }
-    
-    $requete->closeCursor();
-    
-    return $listeChapters;
-  } 
-  
-  public function getPublishList($debut = -1, $limite = -1)
-  {
-    $sql = 'SELECT id, chapitre, complement, titre, contenu, auteur, publication, datePublication FROM chapters WHERE publication = 1 ORDER BY datePublication DESC';
-  
-    if ($debut != -1 || $limite != -1)
-    {
-      $sql .= ' LIMIT '.(int) $limite.' OFFSET '.(int) $debut;
-    }
-    
-    $requete = $this->dao->query($sql);
-    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Chapters');
-    
-    $listeChapters = $requete->fetchAll();
-    
-    foreach ($listeChapters as $chapters)
-    {
-      $chapters->setDateAjout(new \DateTime($chapters->dateAjout()));
-      $chapters->setDateModif(new \DateTime($chapters->dateModif()));
-      $chapters->setDatePublication(new \DateTime($chapters->datePublication()));
-    }
-    
-    $requete->closeCursor();
-    
-    return $listeChapters;
-  }
 
-  public function getSummaryList($debut = -1, $limite = -1)
-  {
-    $sql = 'SELECT id, chapitre, complement, titre, publication FROM chapters WHERE publication = 1 ORDER BY chapitre ASC, complement ASC';
-
+    if (!empty($order))
+    {
+      $sql .= ' ORDER BY '.$order;
+    }
+    
     if ($debut != -1 || $limite != -1)
     {
       $sql .= ' LIMIT '.(int) $limite.' OFFSET '.(int) $debut;

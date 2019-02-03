@@ -15,8 +15,8 @@ class ChaptersController extends BackController
   {
     $this->page->addVar('title', 'Gestion des chapitres');
 
-    $chaptersPublic = $this->managers->getManagerOf('Chapters')->getPublicList();
-    $chaptersPrivate = $this->managers->getManagerOf('Chapters')->getPrivateList();
+    $chaptersPublic = $this->managers->getManagerOf('Chapters')->getList('publication = 1', 'chapitre ASC, complement DESC');
+    $chaptersPrivate = $this->managers->getManagerOf('Chapters')->getList('publication = 0', 'id DESC');
   
     $this->page->addVar('listChaptersPublic', $chaptersPublic);
     $this->page->addVar('listChaptersPrivate', $chaptersPrivate);
