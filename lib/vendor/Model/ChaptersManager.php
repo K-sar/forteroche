@@ -31,6 +31,24 @@ abstract class ChaptersManager extends Manager
       throw new \RuntimeException('Le chapitre doit être validé pour être enregistré');
     }
   }
+
+    /**
+   * Méthode permettant de modifier la publication d'un chapitre.
+   * @param $chapters Chapters le chapitre à enregistrer
+   * @see self::modifyPublish()
+   * @return void
+   */
+  public function savePublish(Chapters $chapters)
+  {
+    if ($chapters->isValid())
+    {
+       $this->modifyPublish($chapters);
+    }
+    else
+    {
+      throw new \RuntimeException('Le chapitre doit être validé pour être enregistré');
+    }
+  }
   
   /**
    * Méthode renvoyant le nombre de chapitres total.

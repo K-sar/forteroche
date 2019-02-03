@@ -13,6 +13,7 @@ class Chapters extends Entity
             $publication,
             $dateAjout,
             $dateModif,
+            $datePublication,
             $image;
 
 
@@ -77,6 +78,11 @@ class Chapters extends Entity
     $this->dateModif = $dateModif;
   }
 
+  public function setDatePublication(\DateTime $datePublication)
+  {
+    $this->datePublication = $datePublication;
+  }
+
   public function setPublication($publication)
   {
     $this->publication = $publication;
@@ -122,6 +128,11 @@ class Chapters extends Entity
   public function dateModif()
   {
     return $this->dateModif;
+  }
+
+  public function datePublication()
+  {
+    return $this->datePublication;
   }
 
   public function publication()

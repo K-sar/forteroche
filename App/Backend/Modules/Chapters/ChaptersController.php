@@ -60,7 +60,7 @@ class ChaptersController extends BackController
       $chapter->setPublication(1);
     }
 
-    $this->managers->getManagerOf('Chapters')->save($chapter);
+    $this->managers->getManagerOf('Chapters')->savePublish($chapter);
 
     $this->app->httpResponse()->redirect('/admin');
   }

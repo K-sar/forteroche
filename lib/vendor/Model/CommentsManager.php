@@ -30,11 +30,16 @@ abstract class CommentsManager extends Manager
     }
   }
 
+  /**
+   * Méthode permettant d'enregistrer la modération d'un commentaire.
+   * @param $comment Le commentaire à enregistrer
+   * @return void
+   */
   public function saveModeration(Comment $comment)
   {
     if ($comment->isValid())
     {
-      $comment->isNew() ? $this->add($comment) : $this->modifyModeration($comment);
+      $this->modifyModeration($comment);
     }
     else
     {

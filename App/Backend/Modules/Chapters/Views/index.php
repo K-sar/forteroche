@@ -8,6 +8,7 @@
       <th scope="col">Auteur</th>
       <th scope="col">Date d'ajout</th>
       <th scope="col">Dernière modification</th>
+      <th scope="col">Date de publication</th>
       <th scope="col"></th>
     </tr>
   </thead>
@@ -20,8 +21,9 @@
           <td>', $chaptersPublic['chapitre'], ' ', $chaptersPublic['complement'], '</td>
           <td>', $chaptersPublic['titre'], '</td>
           <td>', $chaptersPublic['auteur'], '</td>
-          <td>', $chaptersPublic['dateAjout']->format('d/m/Y à H\hi'), '</td>
-          <td>', ($chaptersPublic['dateAjout'] == $chaptersPublic['dateModif'] ? '-' : 'le '.$chaptersPublic['dateModif']->format('d/m/Y à H\hi')), '</td>
+          <td>', $chaptersPublic['dateAjout']->format('d/m/Y'), '</td>
+          <td>', ($chaptersPublic['dateAjout'] == $chaptersPublic['dateModif'] ? '-' : 'le '.$chaptersPublic['dateModif']->format('d/m/Y')), '</td>
+          <td>', $chaptersPublic['datePublication']->format('d/m/Y'), '</td>
           <td>
             <div class="btn-group" role="group" aria-label="Basic example">
               <a href="chapters-', $chaptersPublic['id'], '.html" class="btn btn-secondary">Voir</a>                
@@ -47,6 +49,7 @@
       <th scope="col">Auteur</th>
       <th scope="col">Date d'ajout</th>
       <th scope="col">Dernière modification</th>
+      <th scope="col">Date de publication</th>
       <th scope="col"></th>
     </tr>
   </thead>
@@ -59,8 +62,9 @@
           <td>', $chaptersPrivate['chapitre'], ' ', $chaptersPrivate['complement'], '</td>
           <td>', $chaptersPrivate['titre'], '</td>
           <td>', $chaptersPrivate['auteur'], '</td>
-          <td>', $chaptersPrivate['dateAjout']->format('d/m/Y à H\hi'), '</td>
-          <td>', ($chaptersPrivate['dateAjout'] == $chaptersPrivate['dateModif'] ? '-' : 'le '.$chaptersPrivate['dateModif']->format('d/m/Y à H\hi')), '</td>
+          <td>', $chaptersPrivate['dateAjout']->format('d/m/Y'), '</td>
+          <td>', ($chaptersPrivate['dateAjout'] == $chaptersPrivate['dateModif'] ? '-' : 'le '.$chaptersPrivate['dateModif']->format('d/m/Y')), '</td>
+          <td> - </td>
           <td>
             <div class="btn-group" role="group" aria-label="Basic example">
               <a href="chapters-', $chaptersPrivate['id'], '.html" class="btn btn-secondary">Voir</a>                

@@ -20,7 +20,7 @@ class ChaptersController extends BackController
     // On récupère le manager des chaptires.
     $manager = $this->managers->getManagerOf('Chapters');
  
-    $listeChapters = $manager->getPublicList(0, $nombreChapters);
+    $listeChapters = $manager->getPublishList(0, $nombreChapters);
  
     foreach ($listeChapters as $chapters)
     {
@@ -46,7 +46,7 @@ class ChaptersController extends BackController
       $this->app->httpResponse()->redirect404();
     }
  
-    $this->page->addVar('title', $chapters->titre());
+    $this->page->addVar('title', $chapters->chapitre().' '.$chapters->complement());
     $this->page->addVar('chapters', $chapters);
     $this->page->addVar('comments', $this->managers->getManagerOf('Comments')->getListOf($chapters->id()));
   }
