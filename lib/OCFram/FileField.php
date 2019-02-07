@@ -12,7 +12,7 @@ class FileField extends Field
       $widget .= $this->errorMessage.'<br />';
     }
     
-    $widget .= '<input type="hidden" name="MaxFileSize" value="'.$this->maxFileSize.'" /><label>'.$this->label.'</label><input type="file" name="'.$this->name.'" />';
+    $widget .= '<label>'.$this->label.'</label><input type="file" name="'.$this->name.'" />';
     return $widget;
   }
 }

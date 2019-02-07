@@ -7,17 +7,21 @@ class ChaptersManagerPDO extends ChaptersManager
 {
   protected function add(Chapters $chapters)
   {
-    $requete = $this->dao->prepare('INSERT INTO chapters SET chapitre = :chapitre, complement = :complement, titre = :titre, contenu = :contenu, auteur = :auteur, dateAjout = NOW(), dateModif = NOW()');
+    if (is_null($chapters->publication()))
+    {
+      $chapters->setPublication(0);
+    }
+
+    $requete = $this->dao->prepare('INSERT INTO chapters SET chapitre = :chapitre, complement = :complement, titre = :titre, contenu = :contenu, auteur = :auteur, publication = :publication, dateAjout = NOW(), dateModif = NOW(), datePublication = NOW()');
 
     $requete->bindValue(':chapitre', $chapters->chapitre());
     $requete->bindValue(':complement', $chapters->complement());
     $requete->bindValue(':titre', $chapters->titre());
     $requete->bindValue(':contenu', $chapters->contenu());
     $requete->bindValue(':auteur', $chapters->auteur());
+    $requete->bindValue(':publication', $chapters->publication());
     
     $requete->execute();
-
-    $this->modifyPublish($chapters);
   }
   
   public function count()

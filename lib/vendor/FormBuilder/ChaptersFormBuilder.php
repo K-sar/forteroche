@@ -10,6 +10,10 @@ use \OCFram\NumberField;
 
 use \OCFram\MaxLengthValidator;
 use \OCFram\NotNullValidator;
+use \OCFram\FileTypeValidator;
+use \OCFram\MaxFileSizeValidator;
+use \OCFram\ValidFileValidator;
+
 
 class ChaptersFormBuilder extends FormBuilder
 {
@@ -66,11 +70,18 @@ class ChaptersFormBuilder extends FormBuilder
         'value' => 'Jean Forteroche',
        ]))
        
-       /*->add(new FileField([
-        'maxFileSize' => 1048576,
+       ->add(new FileField([
         'label' => 'Image',
         'name' => 'image',
-       ]))*/
+        'maxFileSize' => 1048576,
+        'validFileType' => array('jpg', 'jpeg', 'gif', 'png'),
+        'validators' => [
+          new ValidFileValidator('Erreur lors du transfert, vérifiez la taille et l\'extension du fichier', 'image'),
+          new MaxFileSizeValidator('Le fichier spécifié est trop gros (1 Mo maximum)', 1048576, 'image'),
+          new FileTypeValidator('L\'extension du fichier n\'est pas conforme (jpg, jpeg, gif ou png)', array('jpg', 'jpeg', 'gif', 'png', ''), 'image'),       
+        ],
+
+       ]))
 
        ->add(new CheckBoxField([
         'label' => 'Publication',

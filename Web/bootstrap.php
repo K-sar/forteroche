@@ -10,8 +10,8 @@ require "../vendor/autoload.php";
 $appClass = 'App\\'.$_GET['app'].'\\'.$_GET['app'].'Application';
 
 $app = new $appClass;
-//try {
+try {
     $app->run();
-/*} catch (\PDOException $e) {
+} catch (\PDOException $e) {
     var_dump($e);
-}*/
+}
