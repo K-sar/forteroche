@@ -1,5 +1,5 @@
 <?php
-namespace OCFram;
+namespace OCFram\Form;
 
 class MaxFileSizeValidator extends Validator
 {

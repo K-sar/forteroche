@@ -1,5 +1,5 @@
 <?php
-namespace OCFram;
+namespace OCFram\Form;
 
 abstract class Validator
 {

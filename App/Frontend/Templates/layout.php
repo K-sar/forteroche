@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>
-      <?= isset($title) ? $title : 'Mon super site' ?>
+      <?= isset($title) ? $title : 'Billet simple pour l\'Alaska' ?>
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8" />

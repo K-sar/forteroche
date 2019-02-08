@@ -1,5 +1,5 @@
 <?php
-namespace OCFram;
+namespace OCFram\Form;
 
 class NumberField extends Field
 {
@@ -14,7 +14,7 @@ class NumberField extends Field
       $widget .= $this->errorMessage.'<br />';
     }
     
-    $widget .= '<label>'.$this->label.'</label><input type="number" name="'.$this->name.'"';
+    $widget .= '<label>'.$this->label.'</label><input type="number" min="0" max="999" name="'.$this->name.'"';
     
     if (!is_null($this->value))
     {
@@ -26,25 +26,6 @@ class NumberField extends Field
       $widget .= ' placeholder="'.htmlspecialchars($this->placeholder).'"';
     }
     
-    if (!empty($this->maxLength))
-    {
-      $widget .= ' maxlength="'.$this->maxLength.'"';
-    }
-    
     return $widget .= ' />';
-  }
-  
-  public function setMaxLength($maxLength)
-  {
-    $maxLength = (int) $maxLength;
-    
-    if ($maxLength > 0)
-    {
-      $this->maxLength = $maxLength;
-    }
-    else
-    {
-      throw new \RuntimeException('La longueur maximale doit être un nombre supérieur à 0');
-    }
   }
 }

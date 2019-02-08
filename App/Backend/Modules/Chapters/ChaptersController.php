@@ -7,7 +7,7 @@ use \Entity\Chapters;
 use \Entity\Comment;
 use \FormBuilder\CommentFormBuilder;
 use \FormBuilder\ChaptersFormBuilder;
-use \OCFram\FormHandler;
+use \OCFram\Form\FormHandler;
  
 class ChaptersController extends BackController
 {

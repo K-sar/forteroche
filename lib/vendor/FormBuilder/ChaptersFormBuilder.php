@@ -1,18 +1,18 @@
 <?php
 namespace FormBuilder;
 
-use \OCFram\FormBuilder;
-use \OCFram\StringField;
-use \OCFram\TextField;
-use \OCFram\CheckBoxField;
-use \OCFram\FileField;
-use \OCFram\NumberField;
+use \OCFram\Form\FormBuilder;
+use \OCFram\Form\StringField;
+use \OCFram\Form\TextField;
+use \OCFram\Form\CheckBoxField;
+use \OCFram\Form\FileField;
+use \OCFram\Form\NumberField;
 
-use \OCFram\MaxLengthValidator;
-use \OCFram\NotNullValidator;
-use \OCFram\FileTypeValidator;
-use \OCFram\MaxFileSizeValidator;
-use \OCFram\ValidFileValidator;
+use \OCFram\Form\MaxLengthValidator;
+use \OCFram\Form\NotNullValidator;
+use \OCFram\Form\FileTypeValidator;
+use \OCFram\Form\MaxFileSizeValidator;
+use \OCFram\Form\ValidFileValidator;
 
 
 class ChaptersFormBuilder extends FormBuilder
@@ -78,7 +78,7 @@ class ChaptersFormBuilder extends FormBuilder
         'validators' => [
           new ValidFileValidator('Erreur lors du transfert, vérifiez la taille et l\'extension du fichier', 'image'),
           new MaxFileSizeValidator('Le fichier spécifié est trop gros (1 Mo maximum)', 1048576, 'image'),
-          new FileTypeValidator('L\'extension du fichier n\'est pas conforme (jpg, jpeg, gif ou png)', array('jpg', 'jpeg', 'gif', 'png', ''), 'image'),       
+          new FileTypeValidator('L\'extension du fichier n\'est pas conforme (jpg, jpeg, gif ou png)', array('jpg', 'jpeg', 'gif', 'png'), 'image'),       
         ],
 
        ]))

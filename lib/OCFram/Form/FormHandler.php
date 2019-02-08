@@ -1,5 +1,8 @@
 <?php
-namespace OCFram;
+namespace OCFram\Form;
+
+use \OCFram\Manager;
+use \OCFram\HTTPRequest;
 
 class FormHandler
 {

@@ -5,7 +5,7 @@ use \OCFram\BackController;
 use \OCFram\HTTPRequest;
 use \Entity\Comment;
 use \FormBuilder\CommentFormBuilder;
-use \OCFram\FormHandler;
+use \OCFram\Form\FormHandler;
  
 class ChaptersController extends BackController
 {
