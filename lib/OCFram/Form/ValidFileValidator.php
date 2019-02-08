@@ -14,7 +14,14 @@ class ValidFileValidator extends Validator
     
     public function isValid($value)
     {
-        if (      $extension_upload = strtolower(  substr(  strrchr($_FILES[$this->fileName]['name'], '.')  ,1)  ) == '')
+        if (empty($_FILES)) 
+        {
+            return false;
+        }
+        
+        $file = $_FILES[$this->fileName]['name'];
+      
+         if ($file == '')     
         {
             $value = 0;
         }
