@@ -93,12 +93,24 @@ class ChaptersManagerPDO extends ChaptersManager
     
     if (!empty($where))
     {
-      $sql .= ' WHERE '.$where;
+      $sql .= ' WHERE '.$where[0];
+      $i = 1;
+      while ($i < count($where))
+      {
+        $sql .= ' AND '.$where[$i];
+        $i ++;
+      }
     }
 
     if (!empty($order))
     {
-      $sql .= ' ORDER BY '.$order;
+      $sql .= ' ORDER BY '.$order[0];
+      $i = 1;
+      while ($i < count($order))
+      {
+        $sql .= ', '.$order[$i];
+        $i ++;
+      }
     }
     
     if ($debut != -1 || $limite != -1)

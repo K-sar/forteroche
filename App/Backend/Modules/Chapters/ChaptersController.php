@@ -14,9 +14,13 @@ class ChaptersController extends BackController
   public function executeIndex(HTTPRequest $request)
   {
     $this->page->addVar('title', 'Gestion des chapitres');
-
-    $chaptersPublic = $this->managers->getManagerOf('Chapters')->getList('publication = 1', 'chapitre ASC, complement DESC');
-    $chaptersPrivate = $this->managers->getManagerOf('Chapters')->getList('publication = 0', 'id DESC');
+    
+    $wherePublic = array('publication = 1');
+    $orderPublic = array('chapitre ASC', 'complement ASC');
+    $chaptersPublic = $this->managers->getManagerOf('Chapters')->getList($wherePublic, $orderPublic);
+    $wherePrivate = array('publication = 0');
+    $orderPrivate = array('id DESC');
+    $chaptersPrivate = $this->managers->getManagerOf('Chapters')->getList($wherePrivate, $orderPrivate);
   
     $this->page->addVar('listChaptersPublic', $chaptersPublic);
     $this->page->addVar('listChaptersPrivate', $chaptersPrivate);
