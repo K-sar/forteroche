@@ -70,52 +70,44 @@ class CommentsManagerPDO extends CommentsManager
     return $comment;
   }
   
-  public function getListOf($chapters)
-  {
-    if (!ctype_digit($chapters))
+  public function getListOf($where, $order)
+  {    
+    $q = 'SELECT id, chapters, auteur, contenu, signalement, ignorer, date FROM comments';
+    
+    if (!empty($where))
     {
-      throw new \InvalidArgumentException('L\'identifiant du chapitre passé doit être un nombre entier valide');
+      $q .= ' WHERE '.$where[0];
+      $i = 1;
+      while ($i < count($where))
+      {
+        $q .= ' AND '.$where[$i];
+        $i ++;
+      }
+    }
+
+    if (!empty($order))
+    {
+      $q .= ' ORDER BY '.$order[0];
+      $i = 1;
+      while ($i < count($order))
+      {
+        $q .= ', '.$order[$i];
+        $i ++;
+      }
     }
     
-    $q = $this->dao->prepare('SELECT id, chapters, auteur, contenu, signalement, date FROM comments WHERE chapters = :chapters');
-    $q->bindValue(':chapters', $chapters, \PDO::PARAM_INT);
-    $q->execute();
+    $requete = $this->dao->query($q);    
+    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Comment');
     
-    $q->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Comment');
-    
-    $comments = $q->fetchAll();
+    $comments = $requete->fetchAll();
     
     foreach ($comments as $comment)
     {
       $comment->setDate(new \DateTime($comment->date()));
     }
     
-    return $comments;
-  }
-  
-  public function getListOfReport()
-  {
-    $q = $this->dao->prepare('SELECT id, chapters, auteur, contenu, signalement, ignorer, date FROM comments WHERE signalement > :signalement AND ignorer = :ignorer ORDER BY signalement DESC');
+    $requete->closeCursor();
 
-    $q->bindValue(':signalement', 0, \PDO::PARAM_INT);
-    $q->bindValue(':ignorer', 0, \PDO::PARAM_INT);
-
-    $q->execute();
-    
-    $q->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Comment');
-    $comments = $q->fetchAll();
-    return $comments;
-  }  
-
-  public function getListOfignored()
-  {
-    $q = $this->dao->prepare('SELECT id, chapters, auteur, contenu, signalement, ignorer, date FROM comments WHERE ignorer = :ignorer ORDER BY signalement DESC');
-
-    $q->bindValue(':ignorer', 1, \PDO::PARAM_INT);
-    $q->execute();
-    
-    $q->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Comment');
-    $comments = $q->fetchAll();
-    return $comments;
+    return $comments;    
   }
 }

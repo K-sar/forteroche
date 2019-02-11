@@ -14,30 +14,34 @@ class CommentsController extends BackController
         $nombreCaracteres = $this->app->config()->get('nombre_caracteres');
         $this->page->addVar('title', 'Modération des commentaires');
 
-        $commentsReported = $this->managers->getManagerOf('Comments')->getListOfReport();
+        $whereReported = array('signalement > 0', 'ignorer = 0');
+        $orderReported = array('signalement DESC');
+        $commentsReported = $this->managers->getManagerOf('Comments')->getListOf($whereReported, $orderReported);
 
         foreach ($commentsReported as $commentR)
         {
-        if (strlen($commentR->contenu()) > $nombreCaracteres)
-        {
-            $debut = substr($commentR->contenu(), 0, $nombreCaracteres);
-            $debut = substr($debut, 0, strrpos($debut, ' ')) . '...';
-    
-            $commentR->setContenu($debut);
-        }
+            if (strlen($commentR->contenu()) > $nombreCaracteres)
+            {
+                $debut = substr($commentR->contenu(), 0, $nombreCaracteres);
+                $debut = substr($debut, 0, strrpos($debut, ' ')) . '...';
+        
+                $commentR->setContenu($debut);
+            }
         }
 
-        $commentsIgnored = $this->managers->getManagerOf('Comments')->getListOfIgnored();
+        $whereIgnored = array('ignorer = 1');
+        $orderIgnored = array('signalement DESC');
+        $commentsIgnored = $this->managers->getManagerOf('Comments')->getListOf($whereIgnored, $orderIgnored);
 
         foreach ($commentsIgnored as $commentI)
         {
-        if (strlen($commentI->contenu()) > $nombreCaracteres)
-        {
-            $debut = substr($commentI->contenu(), 0, $nombreCaracteres);
-            $debut = substr($debut, 0, strrpos($debut, ' ')) . '...';
-    
-            $commentI->setContenu($debut);
-        }
+            if (strlen($commentI->contenu()) > $nombreCaracteres)
+            {
+                $debut = substr($commentI->contenu(), 0, $nombreCaracteres);
+                $debut = substr($debut, 0, strrpos($debut, ' ')) . '...';
+
+                $commentI->setContenu($debut);
+            }
         }
     
         $this->page->addVar('commentsReported', $commentsReported);

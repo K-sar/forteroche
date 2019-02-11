@@ -51,19 +51,7 @@ abstract class CommentsManager extends Manager
    * @param $chapters Le chapitre sur laquelle on veut récupérer les commentaires
    * @return array
    */
-  abstract public function getListOf($chapters);
-
-    /**
-   * Méthode permettant de récupérer une liste de commentaires signalés et non traités.
-   * @return array
-   */
-  abstract public function getListOfReport();
-
-      /**
-   * Méthode permettant de récupérer une liste de commentaires signalés mais ignorés à la modération.
-   * @return array
-   */
-  abstract public function getListOfIgnored();
+  abstract public function getListOf($where, $order);
   
   /**
    * Méthode permettant de modifier un commentaire.

@@ -50,55 +50,12 @@ class ChaptersController extends BackController
  
     $this->page->addVar('title', $chapters->chapitre().' '.$chapters->complement());
     $this->page->addVar('chapters', $chapters);
-    $this->page->addVar('comments', $this->managers->getManagerOf('Comments')->getListOf($chapters->id()));
+
+    $where = array('chapters = '.$chapters->id());
+    $order = array('date DESC');
+    $this->page->addVar('comments', $this->managers->getManagerOf('Comments')->getListOf($where, $order));
   }
  
-  public function executeInsertComment(HTTPRequest $request)
-  {
-    // Si le formulaire a été envoyé.
-    if ($request->method() == 'POST')
-    {
-      $comment = new Comment([
-        'chapters' => $request->getData('chapters'),
-        'auteur' => $request->postData('auteur'),
-        'contenu' => $request->postData('contenu'),
-        'signalement' => $request->postData('signalement'),
-      ]);
-    }
-    else
-    {
-      $comment = new Comment;
-    }
- 
-    $formBuilder = new CommentFormBuilder($comment);
-    $formBuilder->build();
- 
-    $form = $formBuilder->form();
- 
-    $formHandler = new FormHandler($form, $this->managers->getManagerOf('Comments'), $request);
- 
-    if ($formHandler->process())
-    {
-      $this->app->user()->setFlash('Le commentaire a bien été ajouté, merci !');
- 
-      $this->app->httpResponse()->redirect('chapters-'.$request->getData('chapters').'.html');
-    }
- 
-    $this->page->addVar('comment', $comment);
-    $this->page->addVar('form', $form->createView());
-    $this->page->addVar('title', 'Ajout d\'un commentaire');
-  }
-
-  public function executeReportComment(HTTPRequest $request)
-  {
-    $comment = $this->managers->getManagerOf('Comments')->get($request->getData('id'));
-    $comment->setSignalement($comment->signalement()+1);
-    $this->managers->getManagerOf('Comments')->saveModeration($comment);
-
-    $this->app->user()->setFlash('Le commentaire a bien été signalé, merci !');
-    $this->app->httpResponse()->redirect('chapters-'.$comment->chapters().'.html');
-  }
-
   public function executeSummary(HTTPRequest $request)
   { 
     $this->page->addVar('title', 'Sommaire');
