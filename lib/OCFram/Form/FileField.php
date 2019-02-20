@@ -15,4 +15,9 @@ class FileField extends Field
     $widget .= '<label>'.$this->label.'</label><input type="file" name="'.$this->name.'" />';
     return $widget;
   }
+
+  public function setValue($value)
+  {
+      $this->value = $value;
+  }
 }

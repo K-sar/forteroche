@@ -22,6 +22,26 @@ abstract class ChaptersManager extends Manager
    */
   public function save(Chapters $chapters)
   {
+    if (!is_null($chapters->images()))
+    {
+      $imagesTemp = [$chapters->images()];
+      $imagesTemp = $imagesTemp[0];
+
+      $imagesName = $imagesTemp['name'];
+      $imagesExtension = strrchr($imagesName, "."); 
+      $imagesName = md5(uniqid(rand(), true)) . $imagesExtension;
+
+      $imagesTmp_name = $imagesTemp['tmp_name'];
+      $imagesDest = '../Web/Images/ChaptersImages/' .$imagesName;
+      
+      if(move_uploaded_file($imagesTmp_name, $imagesDest))
+      {
+        $chapters->setImages($imagesDest);
+        } else {
+        return false;
+      }
+    }
+     
     if ($chapters->isValid())
     {
       $chapters->isNew() ? $this->add($chapters) : $this->modify($chapters);

@@ -28,4 +28,12 @@ class NumberField extends Field
     
     return $widget .= ' />';
   }
+
+  public function setValue($value)
+  {
+    if (is_numeric($value))
+    {
+      $this->value = $value;
+    }
+  }
 }

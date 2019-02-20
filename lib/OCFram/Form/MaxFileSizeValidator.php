@@ -16,7 +16,7 @@ class MaxFileSizeValidator extends Validator
     
     public function isValid($value)
     {
-        $fileSize = $_FILES[$this->fileName]['size'];
+        $fileSize = $value['size'];
         return  $fileSize <= $this->maxFileSize;
     }
     

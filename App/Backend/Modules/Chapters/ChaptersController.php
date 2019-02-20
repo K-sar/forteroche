@@ -79,9 +79,10 @@ class ChaptersController extends BackController
         'titre' => $request->postData('titre'),
         'contenu' => $request->postData('contenu'),
         'auteur' => $request->postData('auteur'),
-        'publication' => $request->postData('publication')
+        'publication' => $request->postData('publication'),
+        'images' => $request->fileData('images')
       ]);
- 
+
       if ($request->getExists('id'))
       {
         $chapters->setId($request->getData('id'));
@@ -104,7 +105,7 @@ class ChaptersController extends BackController
     $formBuilder->build();
  
     $form = $formBuilder->form();
- 
+   
     $formHandler = new FormHandler($form, $this->managers->getManagerOf('Chapters'), $request);
  
     if ($formHandler->process())
