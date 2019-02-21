@@ -22,11 +22,10 @@ abstract class ChaptersManager extends Manager
    */
   public function save(Chapters $chapters)
   {
-    if (!is_null($chapters->images()))
+    $imagesTemp = $chapters->images();
+    if ($imagesTemp['error'] == 0 )
     {
-      $imagesTemp = [$chapters->images()];
-      $imagesTemp = $imagesTemp[0];
-
+      var_dump('images');die;
       $imagesName = $imagesTemp['name'];
       $imagesExtension = strrchr($imagesName, "."); 
       $imagesName = md5(uniqid(rand(), true)) . $imagesExtension;
@@ -40,6 +39,8 @@ abstract class ChaptersManager extends Manager
         } else {
         return false;
       }
+    } else {
+      $chapters->setImages(0);
     }
      
     if ($chapters->isValid())
