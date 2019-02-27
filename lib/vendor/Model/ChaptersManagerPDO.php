@@ -12,7 +12,7 @@ class ChaptersManagerPDO extends ChaptersManager
       $chapters->setPublication(0);
     }
 
-    $requete = $this->dao->prepare('INSERT INTO chapters SET chapitre = :chapitre, complement = :complement, titre = :titre, contenu = :contenu, auteur = :auteur, publication = :publication, images = :images, dateAjout = NOW(), dateModif = NOW(), datePublication = NOW()');
+    $requete = $this->dao->prepare('INSERT INTO chapters SET chapitre = :chapitre, complement = :complement, titre = :titre, contenu = :contenu, auteur = :auteur, publication = :publication, dateAjout = NOW(), dateModif = NOW(), datePublication = NOW()');
 
     $requete->bindValue(':chapitre', $chapters->chapitre());
     $requete->bindValue(':complement', $chapters->complement());
@@ -20,7 +20,6 @@ class ChaptersManagerPDO extends ChaptersManager
     $requete->bindValue(':contenu', $chapters->contenu());
     $requete->bindValue(':auteur', $chapters->auteur());
     $requete->bindValue(':publication', $chapters->publication());
-    $requete->bindValue(':images', $chapters->images());
     
     $requete->execute();
   }
@@ -32,14 +31,13 @@ class ChaptersManagerPDO extends ChaptersManager
     
   protected function modify(Chapters $chapters)
   {
-    $requete = $this->dao->prepare('UPDATE chapters SET chapitre = :chapitre, complement = :complement, titre = :titre, contenu = :contenu, auteur = :auteur, images = :images, dateModif = NOW() WHERE id = :id');
+    $requete = $this->dao->prepare('UPDATE chapters SET chapitre = :chapitre, complement = :complement, titre = :titre, contenu = :contenu, auteur = :auteur, dateModif = NOW() WHERE id = :id');
     
     $requete->bindValue(':chapitre', $chapters->chapitre());
     $requete->bindValue(':complement', $chapters->complement());
     $requete->bindValue(':titre', $chapters->titre());
     $requete->bindValue(':contenu', $chapters->contenu());
     $requete->bindValue(':auteur', $chapters->auteur());
-    $requete->bindValue(':images', $chapters->images());
     $requete->bindValue(':id', $chapters->id(), \PDO::PARAM_INT);
     
     $requete->execute();
@@ -64,6 +62,17 @@ class ChaptersManagerPDO extends ChaptersManager
     
     $requete->execute();
   }
+
+  protected function modifyImages(Chapters $chapters)
+  {
+    $requete = $this->dao->prepare('UPDATE chapters SET images = :images, alternatif = :alternatif WHERE id = :id');
+
+    $requete->bindValue(':images', $chapters->images());
+    $requete->bindValue(':alternatif', $chapters->alternatif());
+    $requete->bindValue(':id', $chapters->id(), \PDO::PARAM_INT);
+    
+    $requete->execute();
+  }
   
   public function delete($id)
   {
@@ -72,7 +81,7 @@ class ChaptersManagerPDO extends ChaptersManager
 
   public function getUnique($id)
   {
-    $requete = $this->dao->prepare('SELECT id, chapitre, complement, titre, contenu, auteur, publication, images, dateAjout, dateModif, datePublication FROM chapters WHERE id = :id');
+    $requete = $this->dao->prepare('SELECT id, chapitre, complement, titre, contenu, auteur, publication, images, alternatif, dateAjout, dateModif, datePublication FROM chapters WHERE id = :id');
     $requete->bindValue(':id', (int) $id, \PDO::PARAM_INT);
     $requete->execute();
     

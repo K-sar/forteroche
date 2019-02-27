@@ -22,6 +22,43 @@ abstract class ChaptersManager extends Manager
    */
   public function save(Chapters $chapters)
   {
+     
+    if ($chapters->isValid())
+    {
+      $chapters->isNew() ? $this->add($chapters) : $this->modify($chapters);
+    }
+    else
+    {
+      throw new \RuntimeException('Le chapitre doit être validé pour être enregistré');
+    }
+  }
+
+    /**
+   * Méthode permettant de modifier la publication d'un chapitre.
+   * @param $chapters Chapters le chapitre à enregistrer
+   * @see self::modifyPublish()
+   * @return void
+   */
+  public function savePublish(Chapters $chapters)
+  {
+    if ($chapters->isValid())
+    {
+       $this->modifyPublish($chapters);
+    }
+    else
+    {
+      throw new \RuntimeException('Le chapitre doit être validé pour être enregistré');
+    }
+  }
+
+      /**
+   * Méthode permettant de modifier l'illustration d'un chapitre.
+   * @param $chapters Chapters le chapitre à enregistrer
+   * @see self::modifyImages()
+   * @return void
+   */
+  public function saveImages(Chapters $chapters)
+  {
     $imagesTemp = $chapters->images();
     if ($imagesTemp['error'] == 0 )
     {
@@ -54,33 +91,8 @@ abstract class ChaptersManager extends Manager
     } else {
       $chapters->setImages(0);
     }
-     
-    if ($chapters->isValid())
-    {
-      $chapters->isNew() ? $this->add($chapters) : $this->modify($chapters);
-    }
-    else
-    {
-      throw new \RuntimeException('Le chapitre doit être validé pour être enregistré');
-    }
-  }
 
-    /**
-   * Méthode permettant de modifier la publication d'un chapitre.
-   * @param $chapters Chapters le chapitre à enregistrer
-   * @see self::modifyPublish()
-   * @return void
-   */
-  public function savePublish(Chapters $chapters)
-  {
-    if ($chapters->isValid())
-    {
-       $this->modifyPublish($chapters);
-    }
-    else
-    {
-      throw new \RuntimeException('Le chapitre doit être validé pour être enregistré');
-    }
+    $this->modifyImages($chapters);
   }
   
   /**

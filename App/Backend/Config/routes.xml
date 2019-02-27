@@ -6,7 +6,8 @@
   <route url="/admin/chapters-update-([0-9]+)\.html" module="Chapters" action="update" vars="id" />
   <route url="/admin/chapters-delete-([0-9]+)\.html" module="Chapters" action="delete" vars="id" />
   
-  <route url="/admin/chapters-publish-([0-9]+)\.html" module="Chapters" action="publishChapter" vars="id" /> 
+  <route url="/admin/chapters-publish-([0-9]+)\.html" module="Chapters" action="publishChapter" vars="id" />
+  <route url="/admin/chapters-images-([0-9]+)\.html" module="Chapters" action="images" vars="id" />  
 
   <route url="/admin/comment-update-([0-9]+)\.html" module="Comments" action="updateComment" vars="id" />
   <route url="/admin/comment-delete-([0-9]+)\.html" module="Comments" action="deleteComment" vars="id" />

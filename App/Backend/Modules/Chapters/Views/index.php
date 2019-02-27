@@ -27,7 +27,8 @@
           <td>
             <div class="btn-group" role="group" aria-label="Basic example">
               <a href="chapters-', $chaptersPublic['id'], '.html" class="btn btn-secondary">Voir</a>                
-              <a href="admin/chapters-publish-', $chaptersPublic['id'], '.html" class="btn btn-secondary">Cacher</a>
+              <a href="admin/chapters-publish-', $chaptersPublic['id'], '.html" class="btn btn-secondary">Cacher</a>                
+              <a href="admin/chapters-images-', $chaptersPublic['id'], '.html" class="btn btn-secondary">Illustrer</a>
               <a href="admin/chapters-update-', $chaptersPublic['id'], '.html" class="btn btn-secondary">Modifier</a>
               <a href="admin/chapters-delete-', $chaptersPublic['id'], '.html" class="btn btn-secondary">Supprimer</a>
             </div>

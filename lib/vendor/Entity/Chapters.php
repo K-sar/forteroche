@@ -14,7 +14,8 @@ class Chapters extends Entity
             $dateAjout,
             $dateModif,
             $datePublication,
-            $images;
+            $images,
+            $alternatif;
 
 
   const AUTEUR_INVALIDE = 1;
@@ -93,6 +94,11 @@ class Chapters extends Entity
     $this->images = $images;
   }
 
+  public function setAlternatif($alternatif)
+  {
+    $this->alternatif = $alternatif;
+  }
+
   // GETTERS //
 
   public function chapitre()
@@ -143,5 +149,10 @@ class Chapters extends Entity
   public function images()
   {
     return $this->images;
+  }
+
+  public function alternatif()
+  {
+    return $this->alternatif;
   }
 }

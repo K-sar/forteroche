@@ -69,19 +69,6 @@ class ChaptersFormBuilder extends FormBuilder
         ],
         'value' => 'Jean Forteroche',
        ]))
-       
-       ->add(new FileField([
-        'label' => 'Image',
-        'name' => 'images',
-        'maxFileSize' => 1048576,
-        'validFileType' => array('jpg', 'jpeg', 'gif', 'png'),
-        'validators' => [
-          new ValidFileValidator('Erreur lors du transfert, vérifiez la taille et l\'extension du fichier', 'images'),
-          new MaxFileSizeValidator('Le fichier spécifié est trop gros (1 Mo maximum)', 1048576, 'images'),
-          new FileTypeValidator('L\'extension du fichier n\'est pas conforme (jpg, jpeg, gif ou png)', array('jpg', 'jpeg', 'gif', 'png'), 'images'),       
-        ],
-
-       ]))
 
        ->add(new CheckBoxField([
         'label' => 'Publication',

@@ -7,6 +7,7 @@ use \Entity\Chapters;
 use \Entity\Comment;
 use \FormBuilder\CommentFormBuilder;
 use \FormBuilder\ChaptersFormBuilder;
+use \FormBuilder\ImagesFormBuilder;
 use \OCFram\Form\FormHandler;
  
 class ChaptersController extends BackController
@@ -69,6 +70,51 @@ class ChaptersController extends BackController
     $this->app->httpResponse()->redirect('/admin');
   }
 
+  public function executeImages(HTTPRequest $request)
+  {
+    $this->page->addVar('title', 'Illustrer un chapitre');
+
+    if ($request->method() == 'POST')
+    {
+      $chapters = new Chapters([
+        'alternatif' => $request->postData('alternatif'),
+        'images' => $request->fileData('images')
+      ]);
+
+      if ($request->getExists('id'))
+      {
+        $chapters->setId($request->getData('id'));
+      }
+    }
+    else
+    {
+      // L'identifiant du chapitre est transmis si on veut la modifier
+      if ($request->getExists('id'))
+      {
+        $chapters = $this->managers->getManagerOf('Chapters')->getUnique($request->getData('id'));
+      }
+    }
+  
+    $formBuilder = new ImagesFormBuilder($chapters);
+    $formBuilder->build();
+ 
+    $form = $formBuilder->form();
+   
+    $formHandler = new FormHandler($form, $this->managers->getManagerOf('Chapters'), $request);
+    
+    
+    if($request->method() == 'POST' && $form->isValid())
+    {
+      $this->managers->getManagerOf('Chapters')->saveImages($chapters);
+
+      $this->app->user()->setFlash('L\'illustration du chapitre a bien été mise à jour!');
+ 
+      $this->app->httpResponse()->redirect('/admin');
+    }
+ 
+    $this->page->addVar('form', $form->createView());
+  }
+
   public function processForm(HTTPRequest $request)
   {
     if ($request->method() == 'POST')
@@ -110,7 +156,7 @@ class ChaptersController extends BackController
     
     if ($formHandler->process())
     {
-      $this->app->user()->setFlash($chapters->isNew() ? 'Le chapitre a bien été ajouté !' : 'Le chapitre a bien été modifié !');
+      $this->app->user()->setFlash($chapters->isNew() ? 'Le chapitre a bien été ajouté!' : 'Le chapitre a bien été modifié!');
  
       $this->app->httpResponse()->redirect('/admin');
     }
