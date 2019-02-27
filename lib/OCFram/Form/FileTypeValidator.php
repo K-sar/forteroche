@@ -15,20 +15,24 @@ class FileTypeValidator extends Validator
     }
     
     public function isValid($value)
-    {      
-      $file = $_FILES[$this->fileName]['name'];
-      
-      if ($file == '')
-      {
-        return true;
+    {
+      if (!empty($_FILES)) 
+      {   
+        $file = $_FILES[$this->fileName]['name'];
+        
+        if ($file == '')
+        {
+          return true;
+        }
+        else
+        {
+          $file = explode('.', $file);
+          $extension = array_pop($file);
+            
+          return in_array($extension, $this->validFileType);
+        }
       }
-      else
-      {
-        $file = explode('.', $file);
-        $extension = array_pop($file);
-          
-        return in_array($extension, $this->validFileType);
-      }
+      return true;
     }
     
     public function setValidFileType($validFileType)

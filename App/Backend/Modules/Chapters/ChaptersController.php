@@ -107,7 +107,7 @@ class ChaptersController extends BackController
     $form = $formBuilder->form();
    
     $formHandler = new FormHandler($form, $this->managers->getManagerOf('Chapters'), $request);
- 
+    
     if ($formHandler->process())
     {
       $this->app->user()->setFlash($chapters->isNew() ? 'Le chapitre a bien été ajouté !' : 'Le chapitre a bien été modifié !');

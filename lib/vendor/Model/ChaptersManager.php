@@ -25,13 +25,25 @@ abstract class ChaptersManager extends Manager
     $imagesTemp = $chapters->images();
     if ($imagesTemp['error'] == 0 )
     {
-      var_dump('images');die;
       $imagesName = $imagesTemp['name'];
       $imagesExtension = strrchr($imagesName, "."); 
       $imagesName = md5(uniqid(rand(), true)) . $imagesExtension;
 
       $imagesTmp_name = $imagesTemp['tmp_name'];
-      $imagesDest = '../Web/Images/ChaptersImages/' .$imagesName;
+      $linkChapterDir = '../Web/Images/ChaptersImages/'.$chapters->id();
+
+      if (is_dir($linkChapterDir))
+      {
+        $images = scandir($linkChapterDir);
+        foreach($images as $image) {
+          if ($image != "." && $image != "..") {
+            unlink($linkChapterDir.'/'.$image);
+          }
+        }
+      } else {
+        mkdir($linkChapterDir);
+      }
+      $imagesDest = $linkChapterDir.'/'.$imagesName;
       
       if(move_uploaded_file($imagesTmp_name, $imagesDest))
       {

@@ -72,7 +72,7 @@ class ChaptersManagerPDO extends ChaptersManager
 
   public function getUnique($id)
   {
-    $requete = $this->dao->prepare('SELECT id, chapitre, complement, titre, contenu, auteur, publication, dateAjout, dateModif, datePublication FROM chapters WHERE id = :id');
+    $requete = $this->dao->prepare('SELECT id, chapitre, complement, titre, contenu, auteur, publication, images, dateAjout, dateModif, datePublication FROM chapters WHERE id = :id');
     $requete->bindValue(':id', (int) $id, \PDO::PARAM_INT);
     $requete->execute();
     

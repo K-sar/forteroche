@@ -14,20 +14,20 @@ class ValidFileValidator extends Validator
     
     public function isValid($value)
     {
-        if (empty($_FILES)) 
+        if (!empty($_FILES)) 
         {
-            return false;
-        }
+            //return false;
+            
+            $file = $_FILES[$this->fileName]['name'];
         
-        $file = $_FILES[$this->fileName]['name'];
-      
-         if ($file == '')     
-        {
-            $value = 0;
-        }
-        else
-        {
-            $value = $_FILES[$this->fileName]['error'];
+            if ($file == '')     
+            {
+                $value = 0;
+            }
+            else
+            {
+                $value = $_FILES[$this->fileName]['error'];
+            }
         }
 
         return $value == 0;
