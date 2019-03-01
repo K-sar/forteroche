@@ -81,10 +81,11 @@ abstract class ChaptersManager extends Manager
         mkdir($linkChapterDir);
       }
       $imagesDest = $linkChapterDir.'/'.$imagesName;
+      $imagesReturn = 'Images/ChaptersImages/'.$chapters->id().'/'.$imagesName;
       
       if(move_uploaded_file($imagesTmp_name, $imagesDest))
       {
-        $chapters->setImages($imagesDest);
+        $chapters->setImages($imagesReturn);
         } else {
         return false;
       }

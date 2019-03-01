@@ -1,3 +1,7 @@
+<?php if (!empty($chapters['images'])) {?>
+  <img class='illustrationChapters' src='<?= $chapters['images'] ?>' alt='<?= $chapters['alternatif'] ?>' />
+<?php }
+?>
 <h2><?php if (!preg_match('#[eé]pilogue#i', $chapters['complement'])) 
   {
     echo( 'Chapitre '. $chapters['chapitre']. ' ');
@@ -8,7 +12,8 @@
     echo(' : '.$chapters['titre']);
   }?>
   <div class="btn-group" role="group" aria-label="Basic example">            
-    <a href="admin/chapters-publish-<?= $chapters['id'] ?>.html" class="btn btn-secondary"><?php if($chapters['publication'] == 0){echo('Publier');}else{echo('Cacher');} ?></a>
+    <a href="admin/chapters-publish-<?= $chapters['id'] ?>.html" class="btn btn-secondary"><?php if($chapters['publication'] == 0){echo('Publier');}else{echo('Cacher');} ?></a>                
+    <a href="admin/chapters-images-<?= $chapters['id']?>.html" class="btn btn-secondary">Illustrer</a>
     <a href="admin/chapters-update-<?= $chapters['id'] ?>.html" class="btn btn-secondary">Modifier</a>
     <a href="admin/chapters-delete-<?= $chapters['id'] ?>.html" class="btn btn-secondary">Supprimer</a>
   </div>

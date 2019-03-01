@@ -92,6 +92,8 @@ class ChaptersController extends BackController
       if ($request->getExists('id'))
       {
         $chapters = $this->managers->getManagerOf('Chapters')->getUnique($request->getData('id'));
+        
+        $this->page->addVar('chapters', $chapters);
       }
     }
   

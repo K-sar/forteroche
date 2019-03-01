@@ -69,7 +69,8 @@
           <td>
             <div class="btn-group" role="group" aria-label="Basic example">
               <a href="chapters-', $chaptersPrivate['id'], '.html" class="btn btn-secondary">Voir</a>                
-              <a href="admin/chapters-publish-', $chaptersPrivate['id'], '.html" class="btn btn-secondary">Publier</a>
+              <a href="admin/chapters-publish-', $chaptersPrivate['id'], '.html" class="btn btn-secondary">Publier</a>                
+              <a href="admin/chapters-images-', $chaptersPrivate['id'], '.html" class="btn btn-secondary">Illustrer</a>
               <a href="admin/chapters-update-', $chaptersPrivate['id'], '.html" class="btn btn-secondary">Modifier</a>
               <a href="admin/chapters-delete-', $chaptersPrivate['id'], '.html" class="btn btn-secondary">Supprimer</a>
             </div>
