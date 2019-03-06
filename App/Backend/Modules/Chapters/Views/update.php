@@ -3,6 +3,6 @@
   <p>
     <?= $form ?>
     
-    <input type="submit" value="Modifier" />
+    <input class="col-sm-2 col-form-input" type="submit" value="Modifier" />
   </p>
 </form>

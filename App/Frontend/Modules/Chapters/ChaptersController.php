@@ -48,7 +48,16 @@ class ChaptersController extends BackController
       $this->app->httpResponse()->redirect404();
     }
  
-    $this->page->addVar('title', $chapters->chapitre().' '.$chapters->complement());
+    if (!preg_match('#[eé]pilogue#i', $chapters->complement())) {
+      $pageTitle = 'Chapitre '. $chapters->chapitre().' '.$chapters->complement();
+    } else {
+      $pageTitle = $chapters->complement();
+    }
+    if (!empty($chapters->titre())){
+      $pageTitle = $pageTitle.' : '.$chapters->titre();
+    }
+
+    $this->page->addVar('title', $pageTitle);
     $this->page->addVar('chapters', $chapters);
 
     $where = array('chapters = '.$chapters->id());

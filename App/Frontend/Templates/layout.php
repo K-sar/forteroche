@@ -8,6 +8,10 @@
     <meta charset="utf-8" />
     <link href="https://bootswatch.com/4/sandstone/bootstrap.min.css" rel="stylesheet">
 
+    <script src="https://cloud.tinymce.com/5/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
+
+    <link href="../CSS/style.css" rel="stylesheet" media="all">
   </head>
   
   <body>

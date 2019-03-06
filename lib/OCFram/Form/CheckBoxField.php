@@ -12,14 +12,20 @@ class CheckBoxField extends Field
       $widget .= $this->errorMessage.'<br />';
     }
     
-    $widget .= '<div><input type="checkbox" id="'.$this->name.'" name="'.$this->name.'" value="1" ';
-    
-    if ($this->value == 1)
-    {
-      $widget .= 'checked ';
-    }
+    $widget .= 
+   '<div class="form-check">
+      <label for="'.$this->name.'" class="col-sm-2 form-check-label">
+        <input class="form-check-input" type="checkbox" id="'.$this->name.'" name="'.$this->name.'" value="1" ';
+  
+        if ($this->value == 1)
+        {
+          $widget .= 'checked="" ';
+        }
 
-    $widget .= '><label for="'.$this->name.'" >'.$this->label.'</label></div>';
+        $widget .= '> 
+        '.$this->label.' 
+      </label>
+    </div>';
 
 
     return $widget;

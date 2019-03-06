@@ -10,7 +10,7 @@ if (!empty($chapters['images'])) {?>
   <p>
     <?= $form ?>
     
-<input type="submit" value=
+<input class="col-sm-2 col-form-input" type="submit" value=
 <?php 
 if (empty($chapters['images'])) 
 { echo "Ajouter";  } 

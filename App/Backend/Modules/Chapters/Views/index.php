@@ -22,7 +22,7 @@
           <td>', $chaptersPublic['titre'], '</td>
           <td>', $chaptersPublic['auteur'], '</td>
           <td>', $chaptersPublic['dateAjout']->format('d/m/Y'), '</td>
-          <td>', ($chaptersPublic['dateAjout'] == $chaptersPublic['dateModif'] ? '-' : 'le '.$chaptersPublic['dateModif']->format('d/m/Y')), '</td>
+          <td>', ($chaptersPublic['dateAjout'] == $chaptersPublic['dateModif'] ? '-' : $chaptersPublic['dateModif']->format('d/m/Y')), '</td>
           <td>', $chaptersPublic['datePublication']->format('d/m/Y'), '</td>
           <td>
             <div class="btn-group" role="group" aria-label="Basic example">
@@ -64,7 +64,7 @@
           <td>', $chaptersPrivate['titre'], '</td>
           <td>', $chaptersPrivate['auteur'], '</td>
           <td>', $chaptersPrivate['dateAjout']->format('d/m/Y'), '</td>
-          <td>', ($chaptersPrivate['dateAjout'] == $chaptersPrivate['dateModif'] ? '-' : 'le '.$chaptersPrivate['dateModif']->format('d/m/Y')), '</td>
+          <td>', ($chaptersPrivate['dateAjout'] == $chaptersPrivate['dateModif'] ? '-' : $chaptersPrivate['dateModif']->format('d/m/Y')), '</td>
           <td> - </td>
           <td>
             <div class="btn-group" role="group" aria-label="Basic example">
