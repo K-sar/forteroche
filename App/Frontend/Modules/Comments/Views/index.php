@@ -1,8 +1,8 @@
-<h2>Ajouter un commentaire</h2>
 <form action="" method="post">
-  <p>
+    <legend><h2>Ajouter un commentaire</h2></legend>
+
     <?= $form ?>
     
-    <input type="submit" value="Commenter" />
-  </p>
+    <div class="form-group row"><input class="col-form-input btn btn-secondary btn-block" type="submit" value="Commenter" /></div>
+
 </form>

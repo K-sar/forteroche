@@ -1,8 +1,7 @@
-<h2>Modifier un chapitre</h2>
 <form action="" method="post" enctype="multipart/form-data">
-  <p>
-    <?= $form ?>
+  <legend><h2>Modifier un chapitre</h2></legend>
+  <?= $form ?>
     
-    <input class="col-sm-2 col-form-input" type="submit" value="Modifier" />
-  </p>
+  <div class="form-group row"><input class="col-form-input btn btn-secondary btn-block" type="submit" value="Modifier" /></div>
+  
 </form>

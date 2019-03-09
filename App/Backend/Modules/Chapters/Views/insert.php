@@ -1,8 +1,7 @@
-<h2>Ajouter un chapitre</h2>
 <form action="" method="post" enctype="multipart/form-data">
-  <p>
-    <?= $form ?>
-    
-    <input class="col-sm-2 col-form-input" type="submit" value="Ajouter" />
-  </p>
+  <legend><h2>Ajouter un chapitre</h2></legend>
+  <?= $form ?>
+  
+  <div class="form-group row"><input class="col-form-input btn btn-secondary btn-block" type="submit" value="Ajouter" /></div>
+  
 </form>

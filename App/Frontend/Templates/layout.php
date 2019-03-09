@@ -18,7 +18,7 @@
     <div>
       <header>
         <h1>
-          <a href="/" style="color:black" >Billet simple pour l'Alaska</a> <small class="text-muted"><a href="/contacts.html" style="color:grey">par Jean Forteroche</a></small>
+          <a href="/" style="color:black" >Billet simple pour l'Alaska</a><small class="text-muted"> par <a href="/contacts.html" style="color:grey">Jean Forteroche</a></small>
         </h1>
       </header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-primary">

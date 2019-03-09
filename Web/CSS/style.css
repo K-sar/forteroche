@@ -3,7 +3,19 @@ textarea
     min-height : 400px ;
 }
 
+.imageCenter
+{
+    text-align: center;
+    margin: 15px 0 15px 0;
+}
+
 .illustrationChapters
 {
-    max-height : 500px ;
+    max-width: 100%;
+    max-height: 500px;
+}
+
+.container
+{
+    padding : 15px;
 }

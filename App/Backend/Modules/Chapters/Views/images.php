@@ -1,20 +1,22 @@
-<h2>Illustrer le chapitre</h2>
-
-<?php 
-if (!empty($chapters['images'])) {?>
-  <img class='illustrationChapters' src='../<?= $chapters['images'] ?>' alt='<?= $chapters['alternatif'] ?>' />
-<?php }
-?>
-
 <form action="" method="post" enctype="multipart/form-data">
-  <p>
-    <?= $form ?>
-    
-<input class="col-sm-2 col-form-input" type="submit" value=
-<?php 
-if (empty($chapters['images'])) 
-{ echo "Ajouter";  } 
-else 
-{ echo "Remplacer"; } ?> />
-  </p>
+  <legend><h2>Illustrer un chapitre</h2></legend>
+
+  <div class="imageCenter">
+  <?php if (!empty($chapters['images'])) {?>
+    <img src='../<?= $chapters['images'] ?>' class='illustrationChapters' alt='<?= $chapters['alternatif'] ?>' />
+  <?php } ?>
+  </div>
+
+  <?= $form ?>
+
+  <div class="form-group row">
+    <input class="col-form-input btn btn-secondary btn-block" type="submit"  value=
+    <?php 
+      if (empty($chapters['images'])) 
+      { echo "Ajouter";  } 
+      else 
+      { echo "Remplacer"; } 
+    ?> />
+  </div>
+  
 </form>

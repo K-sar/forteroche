@@ -13,8 +13,8 @@ class NumberField extends Field
     {
       $widget .= $this->errorMessage.'<br />';
     }
-    
-    $widget .= '<label class="col-sm-2 col-form-label">'.$this->label.'</label><div class="col-sm-10"><input type="number" min="0" max="999" name="'.$this->name.'"';
+
+    $widget .= '<div class="form-group row"><label class="col-sm-2 col-form-label">'.$this->label.'</label><div class="col-sm-10"><input type="number" min="0" max="999" class="form-control" name="'.$this->name.'"';
     
     if (!is_null($this->value))
     {
@@ -26,7 +26,7 @@ class NumberField extends Field
       $widget .= ' placeholder="'.htmlspecialchars($this->placeholder).'"';
     }
     
-    return $widget .= ' /></div>';
+    return $widget .= ' /></div></div>';
   }
 
   public function setValue($value)

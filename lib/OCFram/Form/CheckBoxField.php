@@ -13,7 +13,7 @@ class CheckBoxField extends Field
     }
     
     $widget .= 
-   '<div class="form-check">
+   '<div class="form-group row"><div class="form-check">
       <label for="'.$this->name.'" class="col-sm-2 form-check-label">
         <input class="form-check-input" type="checkbox" id="'.$this->name.'" name="'.$this->name.'" value="1" ';
   
@@ -25,7 +25,7 @@ class CheckBoxField extends Field
         $widget .= '> 
         '.$this->label.' 
       </label>
-    </div>';
+    </div></div>';
 
 
     return $widget;
