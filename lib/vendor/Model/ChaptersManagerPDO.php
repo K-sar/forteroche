@@ -100,7 +100,7 @@ class ChaptersManagerPDO extends ChaptersManager
 
   public function getList($where, $order, $debut = -1, $limite = -1)
   {
-    $sql = 'SELECT id, chapitre, complement, titre, contenu, auteur, publication, dateAjout, dateModif, datePublication FROM chapters';
+    $sql = 'SELECT id, chapitre, complement, titre, contenu, auteur, images, publication, dateAjout, dateModif, datePublication FROM chapters';
     
     if (!empty($where))
     {

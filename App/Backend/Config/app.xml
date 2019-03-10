@@ -3,4 +3,5 @@
   <define var="login" value="admin" ></define>
   <define var="pass" value="mdp" ></define>  
   <define var="nombre_caracteres" value="100" />
+  <define var="longueur_titre" value="25" />
 </definitions>

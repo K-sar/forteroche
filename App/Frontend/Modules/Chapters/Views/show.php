@@ -1,5 +1,7 @@
 <?php if (!empty($chapters['images'])) {?>
-  <img class='illustrationChapters' src='<?= $chapters['images'] ?>' alt='<?= $chapters['alternatif'] ?>' />
+  <div class="imageCenter">
+    <img class='illustrationChapters' src='<?= $chapters['images'] ?>' alt='<?= $chapters['alternatif'] ?>' />
+  </div>
 <?php }
 ?>
 <h2><?php if (!preg_match('#[eé]pilogue#i', $chapters['complement'])) 

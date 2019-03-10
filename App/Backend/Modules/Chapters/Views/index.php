@@ -6,6 +6,7 @@
       <th scope="col">Chapitre</th>
       <th scope="col">Titre</th>
       <th scope="col">Auteur</th>
+      <th scope="col">Illustration</th>
       <th scope="col">Date d'ajout</th>
       <th scope="col">Dernière modification</th>
       <th scope="col">Date de publication</th>
@@ -21,6 +22,7 @@
           <td>', $chaptersPublic['chapitre'], ' ', $chaptersPublic['complement'], '</td>
           <td>', $chaptersPublic['titre'], '</td>
           <td>', $chaptersPublic['auteur'], '</td>
+          <td>', (empty($chaptersPublic['images']) ? 'Non' : 'Oui'), '</td>
           <td>', $chaptersPublic['dateAjout']->format('d/m/Y'), '</td>
           <td>', ($chaptersPublic['dateAjout'] == $chaptersPublic['dateModif'] ? '-' : $chaptersPublic['dateModif']->format('d/m/Y')), '</td>
           <td>', $chaptersPublic['datePublication']->format('d/m/Y'), '</td>
@@ -48,6 +50,7 @@
       <th scope="col">Chapitre</th>
       <th scope="col">Titre</th>
       <th scope="col">Auteur</th>
+      <th scope="col">Illustration</th>
       <th scope="col">Date d'ajout</th>
       <th scope="col">Dernière modification</th>
       <th scope="col">Date de publication</th>
@@ -58,17 +61,17 @@
   <?php
     foreach ($listChaptersPrivate as $chaptersPrivate)
     {
-        echo '
+      echo '
         <tr>
           <td>', $chaptersPrivate['chapitre'], ' ', $chaptersPrivate['complement'], '</td>
           <td>', $chaptersPrivate['titre'], '</td>
           <td>', $chaptersPrivate['auteur'], '</td>
+          <td>', (empty($chaptersPrivate['images']) ? 'Non' : 'Oui'), '</td>
           <td>', $chaptersPrivate['dateAjout']->format('d/m/Y'), '</td>
           <td>', ($chaptersPrivate['dateAjout'] == $chaptersPrivate['dateModif'] ? '-' : $chaptersPrivate['dateModif']->format('d/m/Y')), '</td>
           <td> - </td>
           <td>
-            <div class="btn-group" role="group" aria-label="Basic example">
-              <a href="chapters-', $chaptersPrivate['id'], '.html" class="btn btn-secondary">Voir</a>                
+            <div class="btn-group" role="group" aria-label="Basic example">                           
               <a href="admin/chapters-publish-', $chaptersPrivate['id'], '.html" class="btn btn-secondary">Publier</a>                
               <a href="admin/chapters-images-', $chaptersPrivate['id'], '.html" class="btn btn-secondary">Illustrer</a>
               <a href="admin/chapters-update-', $chaptersPrivate['id'], '.html" class="btn btn-secondary">Modifier</a>
