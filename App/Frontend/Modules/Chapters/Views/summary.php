@@ -6,7 +6,7 @@ foreach ($listeChapters as $chapters)
 ?>
 <a href="chapters-<?= $chapters['id'] ?>.html" style="color:black">
   <div class="card border-primary mt-3">
-    <div class="card-body">
+    <div class="card-body" style="text-align:center">
       <h2 class="card-title">
         
           <?php if (!preg_match('#[eé]pilogue#i', $chapters['complement'])) 
@@ -14,13 +14,13 @@ foreach ($listeChapters as $chapters)
             echo( 'Chapitre '. $chapters['chapitre']. ' ');
           }
 
-          echo($chapters['complement']); 
-          
-          if (!empty($chapters['titre']))
-          {
-            echo(' : '.$chapters['titre']);
-          } ?>
+          echo($chapters['complement']);?>
       </h2>
+      <?php
+      if (!empty($chapters['titre']))
+      {
+        echo('<h3 class="card-text">'.$chapters['titre'].'</h3>');
+      } ?>
     </div>
   </div>
 </a>

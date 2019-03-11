@@ -1,4 +1,4 @@
-<p style="text-align: center">Il y a actuellement <?= $numberReported ?> commentaires signalés :</p>
+<h3 style="text-align: center">Il y a actuellement <?= $numberReported ?> commentaires signalés :</h3>
 
 <table class="table table-hover">
   <thead>
@@ -15,10 +15,10 @@
   foreach ($commentsReported as $commentR)
   {
     echo '<tr class="table-warning">
-            <td>', $commentR['auteur'], '</td>
-            <td>', $commentR['contenu'], '</td>
-            <td>', $commentR['chapters'], '</td>
-            <td>', $commentR['signalement'], '</td>
+            <td data-label="Auteur">', $commentR['auteur'], '</td>
+            <td data-label="Contenu">', $commentR['contenu'], '</td>
+            <td data-label="Chapitre">', $commentR['chapters'], '</td>
+            <td data-label="Signalement">', $commentR['signalement'], '</td>
             <td>
               <div class="btn-group" role="group" aria-label="Basic example">
                 <a href="../chapters-', $commentR['chapters'], '.html" class="btn btn-secondary">Voir</a>                
@@ -32,7 +32,7 @@
   ?>
   </tbody>
 </table>
-<p style="text-align: center">Il y a actuellement <?= $numberIgnored ?> commentaires ignorés :</p>
+<h3 style="text-align: center">Il y a actuellement <?= $numberIgnored ?> commentaires ignorés :</h3>
 
 <table class="table table-hover">
   <thead>
@@ -49,10 +49,10 @@
   foreach ($commentsIgnored as $commentI)
   {
     echo '<tr class="table-dark">
-            <td>', $commentI['auteur'], '</td>
-            <td>', $commentI['contenu'], '</td>
-            <td>', $commentI['chapters'], '</td>
-            <td>', $commentI['signalement'], '</td>
+            <td data-label="Auteur">', $commentI['auteur'], '</td>
+            <td data-label="Contenu">', $commentI['contenu'], '</td>
+            <td data-label="Chapitre">', $commentI['chapters'], '</td>
+            <td data-label="Signalement">', $commentI['signalement'], '</td>
             <td>
               <div class="btn-group" role="group" aria-label="Basic example">
                 <a href="../chapters-', $commentI['chapters'], '.html" class="btn btn-secondary">Voir</a>                
