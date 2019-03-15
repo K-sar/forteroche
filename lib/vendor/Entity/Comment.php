@@ -6,6 +6,7 @@ use \OCFram\Entity;
 class Comment extends Entity
 {
   protected $chapters,
+            $chapitreParent,
             $auteur,
             $contenu,
             $date,
@@ -23,6 +24,11 @@ class Comment extends Entity
   public function setChapters($chapters)
   {
     $this->chapters = (int) $chapters;
+  }
+
+  public function setChapitreParent($chapitreParent)
+  {
+    $this->chapitreParent = $chapitreParent;
   }
 
   public function setAuteur($auteur)
@@ -63,6 +69,11 @@ class Comment extends Entity
   public function chapters()
   {
     return $this->chapters;
+  }
+
+  public function chapitreParent()
+  {
+    return $this->chapitreParent;
   }
 
   public function auteur()

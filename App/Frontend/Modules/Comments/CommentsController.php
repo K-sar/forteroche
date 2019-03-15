@@ -22,6 +22,7 @@ class CommentsController extends BackController
     }
     else
     {
+      
       $comment = new Comment;
     }
  

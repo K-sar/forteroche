@@ -6,6 +6,7 @@ use \OCFram\Entity;
 class Chapters extends Entity
 {
   protected $chapitre,
+            $chapitreAfficher,
             $complement,
             $titre,
             $contenu,
@@ -104,6 +105,15 @@ class Chapters extends Entity
   public function chapitre()
   {
     return $this->chapitre;
+  }
+
+  public function chapitreAfficher()
+  {
+    $chapitreAfficher = '';
+    if (!preg_match('#[eé]pilogue#i', $this->complement())) {
+      $chapitreAfficher = $this->chapitre(). ' ';}
+    $chapitreAfficher = $chapitreAfficher . $this->complement();
+    return $chapitreAfficher;
   }
 
   public function complement()

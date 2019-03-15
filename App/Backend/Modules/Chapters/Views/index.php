@@ -19,7 +19,7 @@
     {
         echo '
         <tr>
-          <td data-label="Chapitre">', $chaptersPublic['chapitre'], ' ', $chaptersPublic['complement'], '</td>
+          <td data-label="Chapitre">', $chaptersPublic->chapitreAfficher(), '</td>
           <td data-label="Titre">', $chaptersPublic['titre'], '</td>
           <td data-label="Auteur">', $chaptersPublic['auteur'], '</td>
           <td data-label="Date d\'ajout">', $chaptersPublic['dateAjout']->format('d/m/Y'), '</td>
@@ -60,7 +60,7 @@
     {
       echo '
         <tr>
-          <td data-label="Chapitre">', $chaptersPrivate['chapitre'], ' ', $chaptersPrivate['complement'], '</td>
+          <td data-label="Chapitre">', $chaptersPrivate['complement'], '</td>
           <td data-label="Titre">', $chaptersPrivate['titre'], '</td>
           <td data-label="Auteur">', $chaptersPrivate['auteur'], '</td>
           <td data-label="Date d\'ajout">', $chaptersPrivate['dateAjout']->format('d/m/Y'), '</td>
@@ -69,7 +69,7 @@
           <td data-label="Publication"><a href="admin/chapters-publish-', $chaptersPrivate['id'], '.html" class="btn btn-secondary"> - </a></td>
           <td>
             <div class="btn-group col-sm-12" role="group" aria-label="Basic example">                           
-              <a href="admin/chapters-', $chaptersPrivate['id'], '.html" class="btn btn-success">Voir</a>
+              <a href="chapters-', $chaptersPrivate['id'], '.html" class="btn btn-success">Voir</a>
               <a href="admin/chapters-delete-', $chaptersPrivate['id'], '.html" class="btn btn-warning">Supprimer</a>
             </div>
           </td>

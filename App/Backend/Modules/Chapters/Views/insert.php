@@ -1,4 +1,4 @@
-<form action="" method="post" enctype="multipart/form-data">
+<form class="tiny" action="" method="post" enctype="multipart/form-data">
   <legend><h2>Ajouter un chapitre</h2></legend>
   <?= $form ?>
   

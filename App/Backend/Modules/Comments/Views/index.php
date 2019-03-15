@@ -17,7 +17,7 @@
     echo '<tr class="table-warning">
             <td data-label="Auteur">', $commentR['auteur'], '</td>
             <td data-label="Contenu">', $commentR['contenu'], '</td>
-            <td data-label="Chapitre">', $commentR['chapters'], '</td>
+            <td data-label="Chapitre">', $commentR['chapitreParent'], '</td>
             <td data-label="Signalement">', $commentR['signalement'], '</td>
             <td>
               <div class="btn-group" role="group" aria-label="Basic example">
@@ -51,7 +51,7 @@
     echo '<tr class="table-dark">
             <td data-label="Auteur">', $commentI['auteur'], '</td>
             <td data-label="Contenu">', $commentI['contenu'], '</td>
-            <td data-label="Chapitre">', $commentI['chapters'], '</td>
+            <td data-label="Chapitre">', $commentI['chapitreParent'], '</td>
             <td data-label="Signalement">', $commentI['signalement'], '</td>
             <td>
               <div class="btn-group" role="group" aria-label="Basic example">

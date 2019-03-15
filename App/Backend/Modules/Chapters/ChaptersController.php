@@ -14,8 +14,6 @@ class ChaptersController extends BackController
 {
   public function executeIndex(HTTPRequest $request)
   {
-    
-    $nombreCaracteres = $this->app->config()->get('longueur_titre');
     $this->page->addVar('title', 'Gestion des chapitres');
     
     $wherePublic = array('publication = 1');
@@ -27,24 +25,12 @@ class ChaptersController extends BackController
     
     foreach ($chaptersPublic as $public)
     {
-        if (strlen($public->titre()) > $nombreCaracteres)
-        {
-            $debut = substr($public->titre(), 0, $nombreCaracteres);
-            $debut = substr($debut, 0, strrpos($debut, ' ')) . '...';
-    
-            $public->setTitre($debut);
-        }
+      $this->formateChapter($public);
     }
 
     foreach ($chaptersPrivate as $private)
     {
-        if (strlen($private->titre()) > $nombreCaracteres)
-        {
-            $debut = substr($private->titre(), 0, $nombreCaracteres);
-            $debut = substr($debut, 0, strrpos($debut, ' ')) . '...';
-    
-            $private->setTitre($debut);
-        }
+      $this->formateChapter($private);      
     }
 
     $this->page->addVar('listChaptersPublic', $chaptersPublic);
@@ -52,6 +38,19 @@ class ChaptersController extends BackController
     $this->page->addVar('numberChaptersPublic', count($chaptersPublic));
     $this->page->addVar('numberChaptersPrivate', count($chaptersPrivate));
 
+  }
+
+  private function formateChapter($chapter)
+  {
+    $nombreCaracteres = $this->app->config()->get('longueur_titre');
+    if (strlen($chapter->titre()) > $nombreCaracteres)
+      {
+          $debut = substr($chapter->titre(), 0, $nombreCaracteres);
+          $debut = substr($debut, 0, strrpos($debut, ' ')) . '...';
+  
+          $chapter->setTitre($debut);
+      }  
+    return $chapter;
   }
  
   public function executeInsert(HTTPRequest $request)

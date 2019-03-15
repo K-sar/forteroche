@@ -18,30 +18,18 @@ class CommentsController extends BackController
         $orderReported = array('signalement DESC');
         $commentsReported = $this->managers->getManagerOf('Comments')->getListOf($whereReported, $orderReported);
 
-        foreach ($commentsReported as $commentR)
-        {
-            if (strlen($commentR->contenu()) > $nombreCaracteres)
-            {
-                $debut = substr($commentR->contenu(), 0, $nombreCaracteres);
-                $debut = substr($debut, 0, strrpos($debut, ' ')) . '...';
-        
-                $commentR->setContenu($debut);
-            }
-        }
-
         $whereIgnored = array('ignorer = 1');
         $orderIgnored = array('signalement DESC');
         $commentsIgnored = $this->managers->getManagerOf('Comments')->getListOf($whereIgnored, $orderIgnored);
 
+        foreach ($commentsReported as $commentR)
+        {
+            $this->formateComment($commentR);
+        }
+
         foreach ($commentsIgnored as $commentI)
         {
-            if (strlen($commentI->contenu()) > $nombreCaracteres)
-            {
-                $debut = substr($commentI->contenu(), 0, $nombreCaracteres);
-                $debut = substr($debut, 0, strrpos($debut, ' ')) . '...';
-
-                $commentI->setContenu($debut);
-            }
+            $this->formateComment($commentI);
         }
     
         $this->page->addVar('commentsReported', $commentsReported);
@@ -49,6 +37,24 @@ class CommentsController extends BackController
         $this->page->addVar('numberReported', count($commentsReported));
         $this->page->addVar('numberIgnored', count($commentsIgnored));
     }
+
+    private function formateComment($comment)
+    {   
+        $nombreCaracteres = $this->app->config()->get('nombre_caracteres');
+        if (strlen($comment->contenu()) > $nombreCaracteres)
+        {
+            $debut = substr($comment->contenu(), 0, $nombreCaracteres);
+            $debut = substr($debut, 0, strrpos($debut, ' ')) . '...';
+
+            $comment->setContenu($debut);
+        }
+        
+        $chapterParent = $this->managers->getManagerOf('Chapters')->getUnique($comment->chapters('id'));
+        $chapterParent = $chapterParent->chapitreAfficher();
+
+        $comment->setChapitreParent($chapterParent);
+        
+        return $comment;    }
 
     public function executeUpdateComment(HTTPRequest $request)
     {
