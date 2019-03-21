@@ -1,4 +1,4 @@
-<h3 style="text-align: center">Il y a actuellement <?= $numberReported ?> commentaires signalés :</h3>
+<h3 class="text-center">Il y a actuellement <?= $numberReported ?> commentaires signalés :</h3>
 
 <table class="table table-hover">
   <thead>
@@ -32,7 +32,7 @@
   ?>
   </tbody>
 </table>
-<h3 style="text-align: center">Il y a actuellement <?= $numberIgnored ?> commentaires ignorés :</h3>
+<h3 class="text-center">Il y a actuellement <?= $numberIgnored ?> commentaires ignorés :</h3>
 
 <table class="table table-hover">
   <thead>

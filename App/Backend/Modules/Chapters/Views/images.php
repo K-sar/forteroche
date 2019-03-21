@@ -1,7 +1,7 @@
 <form action="" method="post" enctype="multipart/form-data">
   <legend><h2>Illustrer un chapitre</h2></legend>
 
-  <div class="imageCenter">
+  <div class="text-center mt-3 mb-3">
   <?php if (!empty($chapters['images'])) {?>
     <img src='../<?= $chapters['images'] ?>' class='illustrationChapters' alt='<?= $chapters['alternatif'] ?>' />
   <?php } ?>

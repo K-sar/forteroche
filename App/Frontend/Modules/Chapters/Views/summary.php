@@ -4,9 +4,9 @@
 foreach ($listeChapters as $chapters)
 {
 ?>
-<a href="chapters-<?= $chapters['id'] ?>.html" style="color:black">
+<a href="chapters-<?= $chapters['id'] ?>.html">
   <div class="card border-primary mt-3">
-    <div class="card-body" style="text-align:center">
+    <div class="card-body text-center">
       <h2 class="card-title">
         
           <?php if (!preg_match('#[eé]pilogue#i', $chapters['complement'])) 

@@ -1,4 +1,4 @@
-<h3 style="text-align: center">Il y a actuellement <?= $numberChaptersPublic ?> chapitres publiés. En voici la liste :</h3>
+<h3 class="text-center">Il y a actuellement <?= $numberChaptersPublic ?> chapitres publiés. En voici la liste :</h3>
 
 <table class="table table-hover">
   <thead>
@@ -39,7 +39,7 @@
   </tbody>
 </table>
 
-<h3 style="text-align: center">Il y a actuellement <?= $numberChaptersPrivate ?> chapitres privés. En voici la liste :</h3>
+<h3 class="text-center">Il y a actuellement <?= $numberChaptersPrivate ?> chapitres privés. En voici la liste :</h3>
 
 <table class="table table-hover">
   <thead>

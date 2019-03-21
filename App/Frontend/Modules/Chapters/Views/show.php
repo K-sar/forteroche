@@ -8,12 +8,12 @@
 <?php }
 
 if (!empty($chapters['images'])) {?>
-  <div class="imageCenter">
+  <div class="text-center mt-3 mb-3">
     <img class='illustrationChapters' src='<?= $chapters['images'] ?>' alt='<?= $chapters['alternatif'] ?>' />
   </div>
 <?php }
 ?>
-<div style="text-align:center">
+<div class="text-center">
   <h2><?php if (!preg_match('#[eé]pilogue#i', $chapters['complement'])) 
     {
       echo( 'Chapitre '. $chapters['chapitre']. ' ');
@@ -28,7 +28,7 @@ if (!empty($chapters['images'])) {?>
     } ?>
   </h3>
 <p><?= nl2br($chapters['contenu']) ?></p>
-<p style="text-align: right;">Par <em><?= $chapters['auteur'] ?></em>, le <?= $chapters['datePublication']->format('d/m/Y') ?></p>
+<p class="text-right">Par <em><?= $chapters['auteur'] ?></em>, le <?= $chapters['datePublication']->format('d/m/Y') ?></p>
 
 <p><a href="commenter-<?= $chapters['id'] ?>.html">Ajouter un commentaire</a></p>
 
