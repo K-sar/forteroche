@@ -27,10 +27,11 @@ if (!empty($chapters['images'])) {?>
       echo($chapters['titre']);
     } ?>
   </h3>
+</div>
 <p><?= nl2br($chapters['contenu']) ?></p>
 <p class="text-right">Par <em><?= $chapters['auteur'] ?></em>, le <?= $chapters['datePublication']->format('d/m/Y') ?></p>
 
-<p><a href="commenter-<?= $chapters['id'] ?>.html">Ajouter un commentaire</a></p>
+<p><a href="commenter-<?= $chapters['id'] ?>.html" class="text-muted">Ajouter un commentaire</a></p>
 
 <?php
 if (empty($comments))
@@ -58,4 +59,4 @@ foreach ($comments as $comment)
 </fieldset>
 <?php } ?>
 
-<p><a href="commenter-<?= $chapters['id'] ?>.html">Ajouter un commentaire</a></p>
+<p><a href="commenter-<?= $chapters['id'] ?>.html" class="text-muted">Ajouter un commentaire</a></p>

@@ -4,7 +4,7 @@
 foreach ($listeChapters as $chapters)
 {
 ?>
-<a href="chapters-<?= $chapters['id'] ?>.html">
+<a href="chapters-<?= $chapters['id'] ?>.html" class="text-dark">
   <div class="card border-primary mt-3">
     <div class="card-body">
       <h2 class="card-title">

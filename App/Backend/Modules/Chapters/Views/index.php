@@ -60,7 +60,7 @@
     {
       echo '
         <tr>
-          <td data-label="Chapitre">', $chaptersPrivate['complement'], '</td>
+          <td data-label="Chapitre">', $chaptersPrivate->chapitreAfficher(), '</td>
           <td data-label="Titre">', $chaptersPrivate['titre'], '</td>
           <td data-label="Auteur">', $chaptersPrivate['auteur'], '</td>
           <td data-label="Date d\'ajout">', $chaptersPrivate['dateAjout']->format('d/m/Y'), '</td>

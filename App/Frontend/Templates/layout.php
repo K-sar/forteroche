@@ -18,7 +18,7 @@
     <div>
       <header>
         <h1>
-          <a href="/" style="color:black" >Billet simple pour l'Alaska</a><small class="text-muted"> par <a href="/contacts.html" style="color:grey">Jean Forteroche</a></small>
+          <a href="/" class="text-dark">Billet simple pour l'Alaska</a><small class="text-muted"> par <a href="/contacts.html" class="text-muted">Jean Forteroche</a></small>
         </h1>
       </header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -54,9 +54,9 @@
         </div>
       </nav>  
 
-      <div class='container'>
+      <div class='p-3'>
         <section>
-          <?php if ($user->hasFlash()) echo '<p style="text-align: center;">', $user->getFlash(), '</p>'; ?>
+          <?php if ($user->hasFlash()) echo '<p class="text-center">', $user->getFlash(), '</p>'; ?>
           
           <?= $content ?>
         </section>

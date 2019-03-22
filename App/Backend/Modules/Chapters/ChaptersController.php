@@ -152,7 +152,6 @@ class ChaptersController extends BackController
         'contenu' => $request->postData('contenu'),
         'auteur' => $request->postData('auteur'),
         'publication' => $request->postData('publication'),
-        'images' => $request->fileData('images')
       ]);
 
       if ($request->getExists('id'))
@@ -162,7 +161,6 @@ class ChaptersController extends BackController
     }
     else
     {
-      // L'identifiant du chapitre est transmis si on veut la modifier
       if ($request->getExists('id'))
       {
         $chapters = $this->managers->getManagerOf('Chapters')->getUnique($request->getData('id'));
